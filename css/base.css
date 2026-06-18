@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #38BDF8;
+    --primary-hover: #22D3EE;
+
+    --background-color: #0F172A;
+    --secondary-color: #111827;
+
+    --card-color: #1E293B;
+    --border-color: #334155;
+
+    --text-color: #F8FAFC;
+    --text-secondary: #94A3B8;
+}
