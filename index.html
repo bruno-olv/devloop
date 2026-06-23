@@ -11,36 +11,126 @@
 
 
 <body>
-    <header>
-        <nav class="lk-container">
-            <!-- Bloco 1: Esquerda -->
-            <div class="logo">
-                <a href="index.html">Dev<span>Loop</span></a>
-            </div>
+  <div class="glow-wrap">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+ 
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">Dev<em>Loop</em></a>
+        <span class="logo-tag">HaaS</span>
+      </div>
+      <div class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="pages/products.html">Produtos</a>
+        <a href="pages/about.html">Sobre Nós</a>
+      </div>
+      <div class="auth-links">
+        <a href="pages/register.html" class="btn-signup">Cadastrar</a>
+        <a href="pages/login.html" class="btn-login">Entrar</a>
+      </div>
+    </nav>
+  </header>
+ 
+  <section class="hero">
+    <p class="hero-eyebrow">Aluguel simplificado de Hardware</p>
 
-            <!-- Bloco 2: Centro -->
-            <div class="menu-links">
-                <a href="index.html">Home</a>
-                <a href="pages/products.html">Produtos</a>
-                <a href="pages/about.html">Sobre Nós</a>
-            </div>
+    <h1>
+      Hardware <br>
+      <span class="dim">de dev para</span> dev<span class="cursor"></span>
+    </h1>
 
-            <!-- Bloco 3: Direita -->
-            <div class="auth-links">
-                <a href="pages/register.html" class="btn-signup">Cadastrar</a>
-                <a href="pages/login.html" class="btn-login">Entrar</a>
-            </div>
-        </nav>
-    </header>
+    <p class="hero-sub">
+      Alugue MacBooks, ThinkPads e Workstations prontas para uso  sem dor de cabeça.
+    </p>
 
-    <section class="hero">
-        <h1>Hardware Premium para <span>Desenvolvedores</span></h1>
+    <div class="hero-cta">
+      <a href="pages/products.html" class="cta-primary">
+        Ver equipamentos
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path d="M2 6.5h9M7.5 2.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="pages/about.html" class="cta-ghost">Como funciona</a>
+    </div>
 
-        <h3>
-            Alugue MacBooks, ThinkPads e Workstations
-            prontas para desenvolvimento profissional.
-        </h3>
-    </section>
+    <div class="hero-divider">
+      <p class="hero-divider-label">Disponível agora</p>
+      <div class="hero-devices">
+        <span class="device-badge">MacBook Pro M4</span>
+        <span class="device-badge">ThinkPad X1 Carbon</span>
+        <span class="device-badge">Dell XPS 15</span>
+        <span class="device-badge">Workstation RTX 4090</span>
+        <span class="device-badge">Mac Mini M4 Pro</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <p class="section-eyebrow reveal">Por que a DevLoop</p>
+    <h2 class="section-title reveal">Hardware dev-ready, <span class="dim">sem complicação</span></h2>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <p class="why-card-title">Pronto para uso</p>
+        <p class="why-card-body">Equipamentos configurados e entregues em até 24h. Sem setup, sem espera na fila de TI.</p>
+      </div>
+      <div class="why-card reveal">
+        <p class="why-card-title">Troca sem burocracia</p>
+        <p class="why-card-body">Precisa de mais poder? Troque de modelo a qualquer momento, sem multas e sem perda de dados.</p>
+      </div>
+      <div class="why-card reveal">
+        <p class="why-card-title">Assinatura flexível</p>
+        <p class="why-card-body">Pague mês a mês ou feche contratos anuais com desconto. Escale conforme o time cresce.</p>
+      </div>
+      <div class="why-card reveal">
+        <p class="why-card-title">Suporte técnico incluso</p>
+        <p class="why-card-body">Problema de hardware? A gente resolve. Foco total no que importa: o seu código.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <p class="section-eyebrow reveal">Depoimentos</p>
+    <h2 class="section-title reveal">O que dizem nossos clientes</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"Reduzimos o tempo de onboarding de dois dias para duas horas. O equipamento já chega configurado e pronto para o ambiente de dev."</p>
+        <div class="testimonial-author">
+          <p class="author-name">Lucas Ferreira</p>
+          <p class="author-meta">Engineering Manager · Nubank</p>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"Contratamos três MacBooks para um projeto de três meses. No fim do contrato, devolvemos e escalamos sem nenhuma dor de cabeça."</p>
+        <div class="testimonial-author">
+          <p class="author-name">Ana Castilho</p>
+          <p class="author-meta">CTO · Finbits</p>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-text">"Custo previsível, hardware de ponta e suporte que realmente responde. Não voltamos mais para comprar equipamento próprio."</p>
+        <div class="testimonial-author">
+          <p class="author-name">Rafael Duarte</p>
+          <p class="author-meta">Lead Developer · Olist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 
 <div class="glow"></div>
