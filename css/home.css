@@ -416,6 +416,188 @@ body {
       color: var(--muted);
     }
 
+    /* ── PRODUCTS CAROUSEL ───────────────────────── */
+    .products-section {
+      position: relative;
+      z-index: 5;
+      padding: clamp(4rem, 8vh, 6rem) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .products-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 6vw, 5rem);
+      margin-bottom: 2rem;
+    }
+    .products-header .section-eyebrow { margin-bottom: 0.6rem; }
+    .products-header .section-title   { margin-bottom: 0; }
+
+    .carousel-controls {
+      display: flex;
+      gap: 0.5rem;
+      padding-bottom: 2px;
+    }
+
+    .carousel-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-mid);
+      background: var(--surface);
+      color: var(--muted-mid);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .carousel-btn:hover:not(:disabled) {
+      border-color: rgba(99,102,241,0.45);
+      color: var(--text);
+      background: var(--surface-2);
+    }
+    .carousel-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .carousel-outer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1rem;
+      padding: 0.5rem clamp(1.5rem, 6vw, 5rem) 1.5rem;
+      overflow-x: hidden;
+    }
+
+    .carousel-fade {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: clamp(2rem, 7vw, 5.5rem);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .carousel-fade-l {
+      left: 0;
+      background: linear-gradient(to right, var(--bg) 20%, transparent);
+    }
+    .carousel-fade-r {
+      right: 0;
+      background: linear-gradient(to left, var(--bg) 20%, transparent);
+    }
+
+    .product-card {
+      flex: 0 0 min(268px, 80vw);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease, transform 0.4s ease, border-color 0.2s, background 0.2s;
+    }
+    .product-card.visible { opacity: 1; transform: translateY(0); }
+    .product-card:hover   { border-color: var(--border-mid); }
+
+    .card-image {
+      height: 180px;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-chip {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    .card-body {
+      padding: 1.1rem 1.25rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .card-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.015em;
+    }
+
+    .card-specs {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-price {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .card-price span {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-left: 1px;
+    }
+
+    .btn-alugar {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent-hi);
+      background: transparent;
+      border: 1px solid rgba(99,102,241,0.35);
+      border-radius: 6px;
+      padding: 0.38rem 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: border-color 0.15s, color 0.15s, background 0.15s;
+    }
+    .btn-alugar:hover {
+      border-color: var(--accent-hi);
+      background: rgba(99,102,241,0.10);
+      color: #fff;
+    }
+
     /* ── RESPONSIVE ───────────────────────────────── */
     @media (max-width: 640px) {
       .menu-links { display: none; }
