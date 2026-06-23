@@ -558,8 +558,8 @@ body {
 
     .card-footer {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.75rem;
       margin-top: auto;
       padding-top: 0.9rem;
       border-top: 1px solid var(--border);
@@ -579,7 +579,32 @@ body {
       margin-left: 1px;
     }
 
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-detalhes {
+      flex: 1;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted-mid);
+      text-decoration: none;
+      text-align: center;
+      border: 1px solid var(--border-mid);
+      border-radius: 6px;
+      padding: 0.4rem 0;
+      letter-spacing: 0.01em;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-detalhes:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.22);
+    }
+
     .btn-alugar {
+      flex: 1;
       font-family: var(--sans);
       font-size: 0.78rem;
       font-weight: 500;
@@ -587,7 +612,7 @@ body {
       background: transparent;
       border: 1px solid rgba(99,102,241,0.35);
       border-radius: 6px;
-      padding: 0.38rem 0.85rem;
+      padding: 0.4rem 0;
       cursor: pointer;
       letter-spacing: 0.01em;
       transition: border-color 0.15s, color 0.15s, background 0.15s;
