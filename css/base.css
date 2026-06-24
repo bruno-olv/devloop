@@ -1,20 +1,73 @@
-* {
+/* =========================
+   RESET GLOBAL
+========================= */
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 :root {
-    --primary-color: #38BDF8;
-    --primary-hover: #22D3EE;
 
-    --background-color: #0F172A;
-    --secondary-color: #111827;
+    /* Core */
 
-    --card-color: #1E293B;
-    --border-color: #334155;
+    --bg: #0F172A;
+    --surface: #111827;
+    --surface-2: #1E293B;
 
-    --text-color: #F8FAFC;
-    --text-secondary: #94A3B8;
+    --border: rgba(51, 65, 85, 0.5);
+    --border-mid: #334155;
+
+    /* Text */
+
+    --text: #F8FAFC;
+    --muted: #94A3B8;
+    --muted-mid: #CBD5E1;
+
+    /* Accent */
+
+    --accent: #38BDF8;
+    --accent-hi: #22D3EE;
+
+    /* Compatibilidade */
+
+    --primary-color: var(--accent);
+    --primary-hover: var(--accent-hi);
+
+    --background-color: var(--bg);
+    --secondary-color: var(--surface);
+
+    --card-color: var(--surface-2);
+
+    --border-color: var(--border-mid);
+
+    --text-color: var(--text);
+    --text-secondary: var(--muted);
+
+    /* Fonts */
+
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+}
+
+html,
+body {
+    min-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
 }
