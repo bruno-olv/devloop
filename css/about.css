@@ -1,0 +1,342 @@
+/*Parte do body*/
+body {   
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --bg:        #0F172A;
+      --surface:   #111827;
+      --surface-2: #1E293B;
+      --border:    rgba(51, 65, 85, 0.5);
+      --border-mid: #334155;
+
+      --text:      #F8FAFC;
+      --muted:     #94A3B8;
+      --muted-mid: #CBD5E1;
+
+      --accent:    #38BDF8;
+      --accent-hi: #22D3EE;
+
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+ 
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+/*Essa parte todo é so o hearder*/
+header {
+      position: relative;
+      z-index: 10;
+      padding: 0 clamp(1.5rem, 6vw, 5rem);
+      border-bottom: 1px solid var(--border);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+ 
+    /* Logo */
+    .logo a {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo a em {
+      font-style: normal;
+      color: var(--accent-hi);
+    }
+    .logo-tag {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-left: 8px;
+      border: 1px solid var(--border-mid);
+      padding: 2px 5px;
+      border-radius: 3px;
+      vertical-align: middle;
+    }
+ 
+    /* Links nav */
+    .menu-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .menu-links a {
+      font-size: 0.825rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.005em;
+      transition: color 0.15s;
+    }
+    .menu-links a:hover { color: var(--text); }
+ 
+    /* Auth */
+    .auth-links {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-signup {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted-mid);
+      text-decoration: none;
+      padding: 0.45rem 1rem;
+      border-radius: 6px;
+      transition: color 0.15s;
+    }
+    .btn-signup:hover { color: var(--text); }
+ 
+    .btn-login {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #fff;
+      background: var(--accent);
+      text-decoration: none;
+      padding: 0.45rem 1.1rem;
+      border-radius: 6px;
+      letter-spacing: 0.01em;
+      transition: background 0.15s, box-shadow 0.15s;
+    }
+    .btn-login:hover {
+      background: var(--accent-hi);
+      box-shadow: 0 0 20px rgba(56,189,248,0.3);
+    }
+
+/*Parte do textinho*/
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 100px 20px;
+
+    color: white;
+}
+
+.hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.75);
+    margin-top: -5px;
+}
+
+.about-content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 200;
+    color: rgba(255,255,255,0.75);
+    margin-top: -5px;
+}
+
+details {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 25px 30px;
+    background: #0F172A;
+    border: 1px solid rgba(0,120,255,0.4);
+    border-radius: 18px;
+    backdrop-filter: blur(15px);
+    transition: all .3s ease;
+}
+
+details summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+details:hover {
+    transform: translateY(-3px);
+    border-color: #38BDF8; /*Eu tenho que lembrar dessa cor aqui*/
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.25),
+        0 0 30px rgba(0,120,255,.12);
+}
+
+summary {
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+details p {
+    color: #c6d0e0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/*Parte do glow*/
+.glow-wrap {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+    }
+    .glow-orb-1 {
+      width: 600px; height: 600px;
+      background: #38BDF8;
+      opacity: 0.10;
+      top: -220px; left: -100px;
+    }
+    .glow-orb-2 {
+      width: 400px; height: 400px;
+      background: #22D3EE;
+      opacity: 0.07;
+      bottom: -80px; right: 60px;
+    }
+
+/* ── EFEITOS & GLOW ──────────────────────────── */
+
+    /* Orbs mais intensos + terceiro orb central */
+    .glow-orb-1 { opacity: 0.22; }
+    .glow-orb-2 { opacity: 0.14; }
+    .glow-orb-3 {
+      width: 500px; height: 500px;
+      background: #38BDF8;
+      opacity: 0.06;
+      top: 45%; left: 55%;
+      transform: translate(-50%, -50%);
+      filter: blur(160px);
+    }
+
+    /* Orbs flutuando suavemente */
+    @keyframes float-orb {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%       { transform: translateY(-28px) scale(1.06); }
+    }
+    .glow-orb-1 { animation: float-orb 14s ease-in-out infinite; }
+    .glow-orb-2 { animation: float-orb 18s ease-in-out infinite reverse; }
+    .glow-orb-3 { animation: float-orb 22s ease-in-out infinite 5s; }
+
+    /* Header glassmorphism */
+    header {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom-color: rgba(56, 189, 248, 0.1);
+    }
+
+    /* Logo glow no "Loop" */
+    .logo a em {
+      text-shadow:
+        0 0 14px rgba(56, 189, 248, 0.6),
+        0 0 32px rgba(34, 211, 238, 0.25);
+    }
+
+    /* Nav links — traço de luz no hover */
+    .menu-links a {
+      position: relative;
+    }
+    .menu-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-hi));
+      transition: width 0.25s ease;
+      box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+    }
+    .menu-links a:hover::after { width: 100%; }
+
+    /* Botão Entrar — glow persistente */
+    .btn-login {
+      box-shadow:
+        0 0 14px rgba(56, 189, 248, 0.2),
+        0 0 0 1px rgba(56, 189, 248, 0.08) inset;
+    }
+    .btn-login:hover {
+      box-shadow:
+        0 0 28px rgba(56, 189, 248, 0.45),
+        0 4px 14px rgba(56, 189, 248, 0.18);
+    }
+
+    /* Cursor piscante com glow */
+    @keyframes cursor-glow {
+      0%, 100% { box-shadow: 0 0 6px rgba(56,189,248,0.85), 0 0 16px rgba(34,211,238,0.3); }
+      50%       { box-shadow: 0 0 14px rgba(56,189,248,1), 0 0 30px rgba(34,211,238,0.6); }
+    }
+    .cursor {
+      box-shadow: 0 0 6px rgba(56,189,248,0.85), 0 0 16px rgba(34,211,238,0.3);
+      animation: blink 1.1s step-end infinite, cursor-glow 2.2s ease-in-out infinite;
+    }
+
+    /* Hero — overlay radial sutil */
+    .hero {
+      isolation: isolate;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 55% at 5% 65%,
+        rgba(56, 189, 248, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Hero eyebrow e section eyebrow — brilho no texto */
+    .hero-eyebrow,
+    .section-eyebrow {
+      text-shadow: 0 0 18px rgba(34, 211, 238, 0.4);
+    }
+
+    /* Hero h1 — sutil glow no texto */
+    .hero h1 {
+      text-shadow: 0 0 80px rgba(56, 189, 248, 0.08);
+    }
