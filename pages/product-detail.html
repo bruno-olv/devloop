@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLoop | MacBook Pro M4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/product-detail.css">
+</head>
+
+<body>
+
+    <!-- Glow de fundo -->
+    <div class="glow-wrap">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html">Dev<em>Loop</em></a>
+                <span class="logo-tag">for developers</span>
+            </div>
+
+            <div class="menu-links">
+                <a href="../index.html">Home</a>
+                <a href="products.html" class="active">Produtos</a>
+                <a href="about.html">Sobre Nós</a>
+            </div>
+
+            <div class="auth-links">
+                <a href="register.html" class="btn-signup">Cadastrar</a>
+                <a href="login.html" class="btn-login">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-content">
+
+        <div class="back-wrap">
+            <a href="products.html" class="btn-back">
+                ← Voltar para produtos
+            </a>
+        </div>
+
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar">
+
+            <a href="../index.html">Home</a>
+            <span class="sep">/</span>
+            <a href="products.html">Produtos</a>
+            <span class="sep">/</span>
+            <span class="current">MacBook Pro M4</span>
+
+        </div>
+
+        <!-- Main detail: imagem + info -->
+        <div class="detail-main reveal">
+
+            <!-- Imagem -->
+            <div class="detail-image-wrap">
+                <span class="badge-chip">Apple Silicon</span>
+                <span class="badge-popular">Mais alugado</span>
+
+                <img src="../assets/images/macbook.png" alt="MacBook Pro M4"
+                    onerror="this.style.display='none';this.parentElement.querySelector('.img-fallback').style.display='flex'">
+                <!-- Fallback caso a imagem não carregue -->
+                <div class="img-fallback"
+                    style="display:none;flex-direction:column;align-items:center;gap:.5rem;opacity:.3">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="1.2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <path d="M8 21h8M12 17v4" />
+                    </svg>
+                    <span style="font-family:var(--mono);font-size:.65rem;color:var(--muted)">macbook.png</span>
+                </div>
+
+                <div class="thumbs">
+                    <img class="thumb active" src="../assets/images/macbook.png" alt="">
+
+                    <img class="thumb" src="../assets/images/macbook-air.png" alt="">
+
+                    <img class="thumb" src="../assets/images/thinkpad.png" alt="">
+
+                    <img class="thumb" src="../assets/images/workstation.png" alt="">
+
+                    <img class="thumb" src="../assets/images/macbook-pro-16.png" alt="">
+                </div>
+
+            </div>
+
+            <!-- Informações -->
+            <div class="detail-info">
+                <p class="info-eyebrow">MacBook</p>
+                <h1 class="info-title">MacBook Pro M4</h1>
+                <div class="product-rating">★★★★★
+                    <span>4.9 • 127 locações</span>
+                </div>
+                <p class="info-desc">
+                    Desempenho profissional para desenvolvimento iOS, aplicativos nativos e ambientes Apple.
+                    O chip M4 Pro entrega velocidade de compilação que reduz ciclos de build pela metade.
+                </p>
+
+                <div class="quick-specs">
+
+                    <div class="quick-card">
+                        <span>RAM</span>
+                        <strong>16GB</strong>
+                    </div>
+
+                    <div class="quick-card">
+                        <span>SSD</span>
+                        <strong>512GB</strong>
+                    </div>
+
+                    <div class="quick-card">
+                        <span>Chip</span>
+                        <strong>M4 Pro</strong>
+                    </div>
+
+                    <div class="quick-card">
+                        <span>Tela</span>
+                        <strong>14"</strong>
+                    </div>
+
+                </div>
+
+                <p class="info-status">Disponível agora</p>
+
+                <div class="price-block">
+                    <span class="price-value">R$ 399</span>
+                    <span class="price-period">/mês</span>
+                    <span class="price-note">
+                        Sem multa por cancelamento<br>
+                        Entrega em até 24h
+                    </span>
+                </div>
+
+                <div class="detail-actions">
+                    <button class="btn-alugar-lg">Alugar agora</button>
+                    <a href="#" class="btn-contato">Falar com especialista</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Seções inferiores -->
+        <div class="detail-sections">
+
+            <!-- Especificações Técnicas -->
+            <div class="section-divider"></div>
+            <p class="section-label reveal">// especificações técnicas</p>
+            <div class="specs-grid reveal">
+                <div class="spec-item">
+                    <span class="spec-key">Memória</span>
+                    <span class="spec-val">16 GB RAM</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-key">Armazenamento</span>
+                    <span class="spec-val">512 GB SSD</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-key">Processador</span>
+                    <span class="spec-val">Apple M4 Pro</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-key">Sistema Operacional</span>
+                    <span class="spec-val">macOS Sequoia</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-key">Tela</span>
+                    <span class="spec-val">14" Liquid Retina XDR</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-key">Peso</span>
+                    <span class="spec-val">1,61 kg</span>
+                </div>
+            </div>
+
+            <!-- Ideal para + Diferenciais -->
+            <div class="section-divider"></div>
+            <div class="two-col">
+
+                <div class="reveal">
+                    <p class="section-label">// ideal para</p>
+                    <div class="check-list">
+                        <div class="check-item"><span class="check-icon">✓</span>Desenvolvimento Web</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Desenvolvimento iOS</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Docker &amp; Containers</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Machine Learning (Core ML)</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Projetos Acadêmicos</div>
+                    </div>
+                </div>
+
+                <div class="reveal">
+                    <p class="section-label">// diferenciais</p>
+                    <div class="check-list">
+                        <div class="check-item"><span class="check-icon">✓</span>Equipamento revisado</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Suporte técnico incluso</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Troca rápida em caso de defeito</div>
+                        <div class="check-item"><span class="check-icon">✓</span>Contrato flexível (sem fidelidade)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Produtos Relacionados -->
+            <div class="section-divider"></div>
+            <p class="section-label reveal">// produtos relacionados</p>
+            <div class="related-grid">
+
+                <div class="product-card reveal">
+                    <div class="card-image">
+                        <img src="../assets/images/macbook-air.png" alt="MacBook Air M3"
+                            onerror="this.style.opacity='.2'">
+                        <span class="card-chip">Apple Silicon</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-category">MacBook</p>
+                        <h3 class="card-name">MacBook Air M3</h3>
+                        <p class="card-specs">8GB RAM · 256GB SSD · M3</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-price">R$ 279<span>/mês</span></span>
+                        <a href="product-detail.html" class="btn-ver">Ver detalhes</a>
+                    </div>
+                </div>
+
+                <div class="product-card reveal">
+                    <div class="card-image">
+                        <img src="../assets/images/thinkpad.png" alt="ThinkPad X1 Carbon"
+                            onerror="this.style.opacity='.2'">
+                        <span class="card-chip">Intel Core Ultra</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-category">ThinkPad</p>
+                        <h3 class="card-name">ThinkPad X1 Carbon</h3>
+                        <p class="card-specs">32GB RAM · 1TB SSD · Core Ultra 7</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-price">R$ 349<span>/mês</span></span>
+                        <a href="product-detail.html" class="btn-ver">Ver detalhes</a>
+                    </div>
+                </div>
+
+                <div class="product-card reveal">
+                    <div class="card-image">
+                        <img src="../assets/images/macbook-pro-16.png" alt="MacBook Pro 16 M4 Max"
+                            onerror="this.style.opacity='.2'">
+                        <span class="card-chip">M4 Max</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-category">Workstation</p>
+                        <h3 class="card-name">MacBook Pro 16 M4 Max</h3>
+                        <p class="card-specs">64GB RAM · 1TB SSD · M4 Max</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-price">R$ 799<span>/mês</span></span>
+                        <a href="product-detail.html" class="btn-ver">Ver detalhes</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CTA Final -->
+        <section class="cta-section reveal">
+            <p class="cta-eyebrow">// pronto para começar</p>
+            <h2 class="cta-title">
+                Menos tempo configurando.<br>
+                <span class="dim">Mais tempo desenvolvendo.</span>
+            </h2>
+            <p class="cta-sub">Entrega em até 24h. Sem burocracia, sem fidelidade.</p>
+            <a href="#" class="cta-btn">Alugar agora</a>
+        </section>
+
+    </div>
+
+    <script>
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, i * 60);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    </script>
+
+    <script>
+
+        const thumbs = document.querySelectorAll('.thumb');
+        const mainImage = document.getElementById('mainProductImage');
+
+        thumbs.forEach(thumb => {
+
+            thumb.addEventListener('click', () => {
+
+                mainImage.src = thumb.src;
+
+                document
+                    .querySelector('.thumb.active')
+                    ?.classList.remove('active');
+
+                thumb.classList.add('active');
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

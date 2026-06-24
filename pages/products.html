@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLoop | Produtos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/products.css">
+</head>
+
+<body>
+
+    <!-- Glow de fundo -->
+    <div class="glow-wrap">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html">Dev<em>Loop</em></a>
+                <span class="logo-tag">for developers</span>
+            </div>
+
+            <div class="menu-links">
+                <a href="../index.html">Home</a>
+                <a href="products.html" class="active">Produtos</a>
+                <a href="about.html">Sobre Nós</a>
+            </div>
+
+            <div class="auth-links">
+                <a href="register.html" class="btn-signup">Cadastrar</a>
+                <a href="login.html" class="btn-login">Entrar</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <p class="hero-eyebrow">// catálogo completo</p>
+        <h1>Alugue máquinas prontas
+            <span class="dim">para programar.</span>
+        </h1>
+        <p class="hero-sub">MacBooks, ThinkPads e Workstations profissionais prontos para desenvolvimento.</p>
+
+        <div class="search-wrap">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input type="text" id="searchInput" placeholder="MacBook, ThinkPad, Workstation..." autocomplete="off">
+            <span class="search-hint">⌘K</span>
+        </div>
+
+        <div class="filter-row">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="macbook">MacBook</button>
+            <button class="filter-btn" data-filter="thinkpad">ThinkPad</button>
+            <button class="filter-btn" data-filter="workstation">Workstation</button>
+        </div>
+
+        <div class="hero-stats">
+            <div>
+                <strong>500+</strong>
+                <span>Equipamentos alugados</span>
+            </div>
+
+            <div>
+                <strong>98%</strong>
+                <span>Satisfação dos clientes</span>
+            </div>
+
+            <div>
+                <strong>24h</strong>
+                <span>Prazo de entrega</span>
+            </div>
+        </div>
+    </section>
+
+    <p class="results-count">
+        6 equipamentos encontrados
+    </p>
+
+    <!-- Mexer dps, loading de produtos 
+    <div class="products-loading">
+        Carregando catálogo...
+    </div> -->
+
+    <!-- Grid de produtos -->
+    <section class="products-section">
+        <div class="products-grid" id="productsGrid">
+
+            <div class="product-card reveal" data-category="macbook">
+                <div class="card-image">
+                    <img src="../assets/images/macbook.png" alt="MacBook Pro M4">
+                    <span class="card-chip">Apple Silicon</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">MacBook</p>
+                    <h3 class="card-name">MacBook Pro M4</h3>
+                    <p class="card-specs">16GB RAM · 512GB SSD · M4 Pro</p>
+                    <p class="card-desc">Desempenho profissional para aplicações Apple e desenvolvimento iOS.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                    <span class="featured-badge">Mais alugado</span>
+                </div>
+
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 399<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="product-detail.html" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-category="thinkpad">
+                <div class="card-image">
+                    <img src="../assets/images/thinkpad.png" alt="ThinkPad X1 Carbon">
+                    <span class="card-chip">Intel Core Ultra</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">ThinkPad</p>
+                    <h3 class="card-name">ThinkPad X1 Carbon</h3>
+                    <p class="card-specs">32GB RAM · 1TB SSD · Core Ultra 7</p>
+                    <p class="card-desc">Robustez empresarial e leveza para devs que vivem em trânsito.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 349<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-category="macbook">
+                <div class="card-image">
+                    <img src="../assets/images/macbook-air.png" alt="MacBook Air M3">
+                    <span class="card-chip">Apple Silicon</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">MacBook</p>
+                    <h3 class="card-name">MacBook Air M3</h3>
+                    <p class="card-specs">8GB RAM · 256GB SSD · M3</p>
+                    <p class="card-desc">Leve, silencioso e rápido. Ideal para projetos do dia a dia.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 279<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-category="workstation">
+                <div class="card-image">
+                    <img src="../assets/images/workstation.png" alt="Dell Precision 5680">
+                    <span class="card-chip">NVIDIA RTX</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">Workstation</p>
+                    <h3 class="card-name">Dell Precision 5680</h3>
+                    <p class="card-specs">64GB RAM · 2TB SSD · RTX 3500 Ada</p>
+                    <p class="card-desc">Poder bruto para ML, renderização e ambientes virtualizados.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                    <span class="featured-badge">Mais alugado</span>
+                </div>
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 599<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-category="thinkpad">
+                <div class="card-image">
+                    <img src="../assets/images/thinkpad-e.png" alt="ThinkPad E16">
+                    <span class="card-chip">AMD Ryzen</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">ThinkPad</p>
+                    <h3 class="card-name">ThinkPad E16 Gen 2</h3>
+                    <p class="card-specs">16GB RAM · 512GB SSD · Ryzen 7</p>
+                    <p class="card-desc">Custo-benefício para estudantes e projetos acadêmicos.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 249<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal" data-category="workstation">
+                <div class="card-image">
+                    <img src="../assets/images/macbook-pro-16.png" alt="MacBook Pro 16 M4 Max">
+                    <span class="card-chip">M4 Max</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-category">Workstation</p>
+                    <h3 class="card-name">MacBook Pro 16 M4 Max</h3>
+                    <p class="card-specs">64GB RAM · 1TB SSD · M4 Max</p>
+                    <p class="card-desc">O topo de linha Apple para quem não aceita compromissos.</p>
+                    <p class="card-status available">● Disponível agora</p>
+                </div>
+                <div class="card-footer">
+                    <div class="card-price">
+                        R$ 799<span>/mês</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="#" class="btn-detalhes">Ver detalhes</a>
+                        <button class="btn-alugar">Alugar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Estado vazio (busca sem resultado) -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <p class="empty-icon">_</p>
+            <p class="empty-title">💻 Nenhum resultado encontrado.</p>
+            <p class="empty-sub">Tente buscar por MacBook, ThinkPad ou Dell Precision.</p>
+        </div>
+
+    </section>
+
+    <!-- mexer nisso dps
+     <section class="cta-section">
+
+        <p class="section-eyebrow">
+            // pronto para começar
+        </p>
+
+        <h2>
+            Encontre a máquina ideal
+            para o seu próximo projeto.
+        </h2>
+
+        <a href="#" class="cta-primary">
+            Solicitar orçamento
+        </a>
+
+    </section>
+    -->
+
+    <script src="../js/products.js"></script>
+
+</body>
+
+</html>
