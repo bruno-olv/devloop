@@ -884,6 +884,58 @@ nav {
     transform: translateY(0);
 }
 
+/* Footer */
+.footer {
+    border-top: 1px solid var(--border);
+    margin-top: 5rem;
+    padding: 3rem clamp(1.5rem, 6vw, 5rem);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.footer-brand h3 {
+    font-size: 1.2rem;
+    margin-bottom: .5rem;
+}
+
+.footer-brand em {
+    font-style: normal;
+    color: var(--accent-hi);
+}
+
+.footer-brand p {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: var(--text);
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: .8rem;
+}
+
 /* ── HAMBURGER ── */
 .nav-toggle {
     display: none;
@@ -921,11 +973,11 @@ nav {
 }
 
 /* Blur no conteúdo da página quando o menu está aberto */
-body > *:not(header):not(.nav-backdrop) {
+body>*:not(header):not(.nav-backdrop) {
     transition: filter 0.32s ease;
 }
 
-body.menu-open > *:not(header):not(.nav-backdrop) {
+body.menu-open>*:not(header):not(.nav-backdrop) {
     filter: blur(5px);
 }
 
