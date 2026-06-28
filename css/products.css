@@ -518,15 +518,15 @@ nav {
 
 .card-category {
     font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--accent-hi);
     opacity: 0.75;
 }
 
 .card-name {
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.015em;
@@ -572,6 +572,21 @@ nav {
     background: rgba(56, 189, 248, .12);
     border: 1px solid rgba(56, 189, 248, .25);
     color: var(--accent-hi);
+}
+
+.insurance {
+    font-size: 0.72rem;
+    font-weight: 500;
+
+    padding: 0.3rem 0.7rem;
+
+    border-radius: 999px;
+
+    background: rgba(168, 85, 247, 0.12);
+
+    border: 1px solid rgba(168, 85, 247, 0.30);
+
+    color: #c084fc;
 }
 
 .featured-badge {
