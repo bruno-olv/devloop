@@ -134,22 +134,6 @@ nav {
   color: var(--text);
 }
 
-.menu-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-hi));
-  transition: width 0.25s ease;
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
-}
-
-.menu-links a:hover::after,
-.menu-links a.active::after {
-  width: 100%;
-}
 
 /* Auth */
 .auth-links {
@@ -795,46 +779,6 @@ header {
   border-bottom-color: rgba(56, 189, 248, 0.1);
 }
 
-/* Logo glow no "Loop" */
-.logo a em {
-  text-shadow:
-    0 0 14px rgba(56, 189, 248, 0.6),
-    0 0 32px rgba(34, 211, 238, 0.25);
-}
-
-/* Nav links — traço de luz no hover */
-.menu-links a {
-  position: relative;
-}
-
-.menu-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-hi));
-  transition: width 0.25s ease;
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
-}
-
-.menu-links a:hover::after {
-  width: 100%;
-}
-
-/* Botão Entrar — glow persistente */
-.btn-login {
-  box-shadow:
-    0 0 14px rgba(56, 189, 248, 0.2),
-    0 0 0 1px rgba(56, 189, 248, 0.08) inset;
-}
-
-.btn-login:hover {
-  box-shadow:
-    0 0 28px rgba(56, 189, 248, 0.45),
-    0 4px 14px rgba(56, 189, 248, 0.18);
-}
 
 /* Cursor piscante com glow */
 @keyframes cursor-glow {
