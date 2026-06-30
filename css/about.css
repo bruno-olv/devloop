@@ -1,11 +1,3 @@
-/*Parte do body*/
-body {
-  font-family: 'Manrope', sans-serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -37,6 +29,14 @@ html, body {
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/*Parte do body*/
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
 }
 
 /*Essa parte todo é so o hearder*/
