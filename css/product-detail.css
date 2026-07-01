@@ -494,6 +494,27 @@ nav {
     color: #22C55E;
 }
 
+.info-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-insurance {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 0.75rem;
+
+    color: #A855F7;
+}
+
+.info-insurance::before {
+    content: '●';
+    font-size: 0.6rem;
+}
+
 .info-status::before {
     content: '●';
     font-size: 0.6rem;
@@ -536,6 +557,7 @@ nav {
 
 .btn-alugar-lg {
     flex: 1;
+    width: 100%;
     font-family: var(--sans);
     font-size: 0.875rem;
     font-weight: 500;
