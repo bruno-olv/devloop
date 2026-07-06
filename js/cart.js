@@ -26,22 +26,29 @@
     window.updateNavCartBadge = updateNavCartBadge;
 })();
 
+// ── CARRINHO DE COMPRAS ─────────────────────────────
+// Chave usada para salvar/ler o carrinho no localStorage
 const CART_KEY = 'devloopCart'
 
+// Garante que o script só rode depois que o HTML da página estiver totalmente carregado 
+// (evita erros de elementos ainda não existentes)
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', ready)
 } else {
   ready()
 }
 
+// monta a tabela do carrinho assim que a página abre
 function ready() {
   renderCart()
 
+   // Liga o botão "Finalizar Compra" à função de compra
   const purchaseButton = document.querySelector('.purchase-button')
   if (purchaseButton) {
     purchaseButton.addEventListener('click', makePurchase)
   }
 
+  // Liga o botão "Limpar carrinho" à função de limpeza
   const clearButton = document.getElementById('btn-limpar')
   if (clearButton) {
     clearButton.addEventListener('click', clearCart)
@@ -58,7 +65,7 @@ function saveCart(cart) {
   localStorage.setItem(CART_KEY, JSON.stringify(cart))
 }
 
-// Formata número pra "R$ 1.500,00"
+// Formata número pra "R$ 1.234,56"
 function formatPrice(value) {
   return value.toLocaleString('pt-BR', {
     style: 'currency',
@@ -122,6 +129,7 @@ function renderCart() {
   updateTotal(cart)
 }
 
+// Remove um item do carrinho a partir do botão clicado
 function removeProduct(event) {
   const index = Number(event.target.dataset.index)
   const cart = getCart()
@@ -131,12 +139,13 @@ function removeProduct(event) {
   renderCart()
 }
 
+// Atualiza a quantidade de um produto
 function changeQuantity(event) {
   const index = Number(event.target.dataset.index)
   const newQuantity = Number(event.target.value)
   const cart = getCart()
 
-  if (newQuantity <= 0) {
+  if (newQuantity <= 0) { // Se a quantidade for zero ou negativa, remove o produto
     cart.splice(index, 1)
   } else {
     cart[index].quantity = newQuantity
@@ -146,6 +155,7 @@ function changeQuantity(event) {
   renderCart()
 }
 
+// Recalcula o valor total do carrinho e atualiza o subtotal/total na tela
 function updateTotal(cart) {
   const total = cart.reduce((sum, product) => {
     return sum + product.price * product.quantity
@@ -154,13 +164,16 @@ function updateTotal(cart) {
   const subtotalEl = document.getElementById('subtotal')
   const totalEl = document.getElementById('total')
 
+  // Verifica se os elementos existem antes de atualizar (evita erros)
   if (subtotalEl) subtotalEl.textContent = formatPrice(total)
   if (totalEl) totalEl.textContent = formatPrice(total)
 }
 
+// Executa a "compra": valida o carrinho, mostra o valor total e o esvazia
 function makePurchase() {
   const cart = getCart()
 
+  // Valida se o carrinho está vazio antes de prosseguir
   if (cart.length === 0) {
     alert('Seu carrinho está vazio!')
     return
@@ -172,10 +185,11 @@ function makePurchase() {
     `Obrigado pela sua compra!\nValor do pedido: ${formatPrice(total)}\n\nVolte sempre :)`
   )
 
-  saveCart([])
+  saveCart([]) // esvazia o carrinho após a compra
   renderCart()
 }
 
+// Remove todos os produtos do carrinho manualmente (botão "Limpar carrinho")
 function clearCart() {
   saveCart([])
   renderCart()
