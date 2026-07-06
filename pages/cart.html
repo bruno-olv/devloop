@@ -56,42 +56,52 @@
     </header>
     
         <!-- CARRINHO -->
-        <section>
-            <div class="layout">
+        <section class="container normal-section cart-layout">
+        <div class="layout">
             <h2 class="section-title">
-                Carrinho <span id="badge-inline" class="badge-inline" hidden></span>
-            </h2>
-            <div class="badge-wrap">
-                <span id="badge" class="badge" hidden>0</span>
+                    Carrinho <span id="badge-inline" class="badge-inline" hidden></span>
+                </h2>
+
+            <div class="cart-content">
+                <table class="cart-table">
+                <thead>
+                    <tr>
+                    <th class="table-head-item first-col">Item</th>
+                    <th class="table-head-item second-col">Preço</th>
+                    <th class="table-head-item third-col">Quantidade</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- os produtos adicionados vão aparecer aqui via JS -->
+                </tbody>
+                </table>
+
+                <div class="cart-summary">
+                    <!-- Subtotal, Frete, Total, botões -->
+                    <div id="lista-carrinho" class="lista-carrinho"></div>
+                    <div style="font-size:48px;"></div>
+                
+                    <div id="resumo" class="resumo" hidden>
+                        <div class="resumo-linha">
+                            <span>Subtotal</span>
+                            <span id="subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="resumo-linha">
+                            <span>Frete</span>
+                            <span style="color:#4ade80;">Grátis</span>
+                        </div>
+                        <div class="resumo-linha total-linha">
+                            <span>Total</span>
+                            <span id="total">R$ 0,00</span>
+                        </div>
+                            <button class="btn-finalizar">Finalizar Compra</button> <!-- pq não funciona??? -->
+                            <button id="btn-limpar" class="btn-limpar">Limpar carrinho</button>
+                    </div>
+                </div>
             </div>
-            <div id="carrinho-vazio" class="vazio">
-                <div style="font-size:48px;"></div>
-                <p>Seu carrinho está vazio</p>
-                <small>Adicione <a href="products.html">Produtos</a></small>
-            </div>
-        
-            <div id="lista-carrinho" class="lista-carrinho"></div>
-            <div style="font-size:48px;"></div>
-                <small>Adicione mais <a href="products.html">Produtos</a></small>
-        
-            <div id="resumo" class="resumo" hidden>
-                <div class="resumo-linha">
-                    <span>Subtotal</span>
-                    <span id="subtotal">R$ 0,00</span>
-                </div>
-                <div class="resumo-linha">
-                    <span>Frete</span>
-                    <span style="color:#4ade80;">Grátis</span>
-                </div>
-                <div class="resumo-linha total-linha">
-                    <span>Total</span>
-                    <span id="total">R$ 0,00</span>
-                </div>
-                    <button class="btn-finalizar">Finalizar Compra</button> <!-- pq não funciona??? -->
-                    <button id="btn-limpar" class="btn-limpar">Limpar carrinho</button>
-                </div>
-            </div>
-            </section>
+        </div>
+        </section>
 
     <!--- FOOTER -->
     <footer class="footer">
