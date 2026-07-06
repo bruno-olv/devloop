@@ -1,135 +1,110 @@
+// isso aqui roda tudo dentro de uma funcao pra nao bagunçar o escopo global
 (function () {
+    // usei isso pra deixar o modo estrito ligado
     "use strict";
-    alert("auth.js carregou");
 
-    // ─── Referências DOM ──────────────────────────────────────────────────────
+    // criei essas variaveis pra pegar o formulario e os campos do cadastro
     const form            = document.getElementById("registerForm");
     const firstNameInput  = document.getElementById("firstName");
-    const lastNameInput   = document.getElementById("lastName");
     const emailInput      = document.getElementById("email");
     const passwordInput   = document.getElementById("password");
     const confirmInput    = document.getElementById("confirmPassword");
     const termsCheckbox   = document.getElementById("terms");
     const submitBtn       = document.getElementById("submitBtn");
 
-    const strengthSegments = [
-        document.getElementById("s1"),
-        document.getElementById("s2"),
-        document.getElementById("s3"),
-        document.getElementById("s4"),
-    ];
-    const strengthLabel = document.getElementById("strengthLabel");
-
-    // ─── Utilitários ─────────────────────────────────────────────────────────
-
-    /**
-     * Exibe ou esconde mensagem de erro para um campo.
-     * @param {HTMLInputElement} input
-     * @param {string} errorId - ID do elemento de erro
-     * @param {boolean} isValid
-     */
+    // funcao para mostrar ou esconder erro num campo
     function setFieldValidity(input, errorId, isValid) {
+        // pega o elemento de erro pelo id
         const errorEl = document.getElementById(errorId);
+        // se ta valido tira o erro
         if (isValid) {
             input.classList.remove("error");
             errorEl.classList.remove("visible");
         } else {
+            // se nao ta valido mostra o erro
             input.classList.add("error");
             errorEl.classList.add("visible");
         }
     }
 
-    /**
-     * Mostra um toast de feedback.
-     * @param {string} message
-     * @param {"success"|"error"} type
-     */
+    // funcao para mostrar aquele toast de aviso na tela
     function showToast(message, type = "success") {
+        // criei essas variaveis pra pegar as partes do toast
         const toast   = document.getElementById("toast");
         const icon    = document.getElementById("toastIcon");
         const msgEl   = document.getElementById("toastMsg");
 
+        // troca a classe do icone dependendo se é sucesso ou erro
         icon.className = `toast-icon ${type}`;
+        // fiz isso pra colocar o svg certo, um check ou um x
         icon.innerHTML = type === "success"
             ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`
             : `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
 
+        // coloca a mensagem que veio por parametro
         msgEl.textContent = message;
+        // mostra o toast na tela
         toast.classList.add("show");
 
+        // fiz isso pra esconder o toast depois de 3.5 segundos
         setTimeout(() => toast.classList.remove("show"), 3500);
     }
 
-    // ─── Validações individuais ───────────────────────────────────────────────
-
+    // funcao para validar o nome, tem que ter só letras e no minimo 3
     function validateFirstName() {
-        const valid = firstNameInput.value.trim().length >= 2;
+        // usei isso pra aceitar só letras (com acento) e espaço, sem numero ou caractere especial
+        const re = /^[A-Za-zÀ-ÿ\s]{3,}$/;
+        // testa o nome digitado com a regex
+        const valid = re.test(firstNameInput.value.trim());
+        // chama a funcao que mostra/esconde o erro
         setFieldValidity(firstNameInput, "firstNameError", valid);
+        // devolve se é valido
         return valid;
     }
 
-    function validateLastName() {
-        const valid = lastNameInput.value.trim().length >= 2;
-        setFieldValidity(lastNameInput, "lastNameError", valid);
-        return valid;
-    }
-
+    // funcao para validar o email com uma regex
     function validateEmail() {
+        // usei isso pra pegar o formato basico de email
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // testa o email digitado com a regex
         const valid = re.test(emailInput.value.trim());
+        // mostra/esconde o erro do email
         setFieldValidity(emailInput, "emailError", valid);
+        // devolve se é valido
         return valid;
     }
 
+    // funcao para validar se a senha tem no minimo 8 caracteres
     function validatePassword() {
+        // criei essa variavel pra guardar se é valido
         const valid = passwordInput.value.length >= 8;
+        // mostra/esconde o erro da senha
         setFieldValidity(passwordInput, "passwordError", valid);
+        // devolve se é valido
         return valid;
     }
 
+    // funcao para validar se a confirmação bate com a senha
     function validateConfirmPassword() {
+        // fiz isso pra checar se preencheu e se é igual a senha
         const valid =
             confirmInput.value.length > 0 &&
             confirmInput.value === passwordInput.value;
+        // mostra/esconde o erro da confirmação
         setFieldValidity(confirmInput, "confirmPasswordError", valid);
+        // devolve se é valido
         return valid;
     }
 
-    // ─── Força da senha ───────────────────────────────────────────────────────
-
-    /**
-     * Calcula força da senha de 0 a 4.
-     * Critérios: comprimento ≥ 8, letras minúsculas, maiúsculas, números, especiais.
-     */
-    function getPasswordStrength(value) {
-        let score = 0;
-        if (value.length >= 8)              score++;
-        if (/[a-z]/.test(value) && /[A-Z]/.test(value)) score++;
-        if (/\d/.test(value))               score++;
-        if (/[^a-zA-Z0-9]/.test(value))    score++;
-        return score;
-    }
-
-    const STRENGTH_LABELS = ["", "Fraca", "Razoável", "Boa", "Forte"];
-    const STRENGTH_COLORS = ["", "weak", "medium", "strong", "strong"];
-
-    function updateStrengthBar(value) {
-        const score = value.length === 0 ? 0 : getPasswordStrength(value);
-
-        strengthSegments.forEach((seg, i) => {
-            seg.className = "strength-segment";
-            if (i < score) seg.classList.add(STRENGTH_COLORS[score]);
-        });
-
-        strengthLabel.textContent = score > 0 ? STRENGTH_LABELS[score] : "";
-    }
-
-    // ─── Alternância de visibilidade ──────────────────────────────────────────
-
+    // funcao para configurar o botao de mostrar/esconder senha
     function setupToggle(buttonId, inputEl) {
+        // usei isso pra pegar o botao do olhinho
         const btn = document.getElementById(buttonId);
+        // adicionei um evento de clique no botao
         btn.addEventListener("click", () => {
+            // criei essa variavel pra saber se ta mostrando como texto
             const isText = inputEl.type === "text";
+            // troca o tipo do input entre texto e senha
             inputEl.type = isText ? "password" : "text";
 
             // Troca ícone (olho aberto / olho fechado)
@@ -145,78 +120,83 @@
         });
     }
 
+    // chamei a funcao pra configurar o olhinho do campo senha
     setupToggle("togglePassword", passwordInput);
+    // chamei a funcao pra configurar o olhinho do campo confirmar senha
     setupToggle("toggleConfirm",  confirmInput);
 
-    // ─── Eventos de validação em tempo real ──────────────────────────────────
-
+    // fiz isso pra validar o nome quando sair do campo
     firstNameInput.addEventListener("blur", validateFirstName);
-    lastNameInput.addEventListener("blur",  validateLastName);
+    // fiz isso pra validar o email quando sair do campo
     emailInput.addEventListener("blur",     validateEmail);
 
+    // adicionei um evento pra rodar toda vez que digita na senha
     passwordInput.addEventListener("input", () => {
-        updateStrengthBar(passwordInput.value);
+        // se ja tava com erro revalida enquanto digita
         if (passwordInput.classList.contains("error")) validatePassword();
+        // se a confirmação ja tiver algo revalida ela tambem
         if (confirmInput.value) validateConfirmPassword();
     });
 
+    // fiz isso pra validar a senha quando sair do campo
     passwordInput.addEventListener("blur", validatePassword);
+    // fiz isso pra validar a confirmação quando sair do campo
     confirmInput.addEventListener("blur",  validateConfirmPassword);
+    // adicionei um evento pra revalidar a confirmação enquanto digita
     confirmInput.addEventListener("input", () => {
+        // so revalida se ja tava com erro
         if (confirmInput.classList.contains("error")) validateConfirmPassword();
     });
 
-    // ─── Armazenamento simulado ───────────────────────────────────────────────
-
-    /**
-     * Verifica se o e-mail já está cadastrado no localStorage.
-     * @param {string} email
-     * @returns {boolean}
-     */
+    // funcao para verificar se o email ja existe no localStorage
     function emailAlreadyExists(email) {
+        // usei isso pra pegar todos os usuarios ja cadastrados
         const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+        // devolve true se achar algum usuario com esse email
         return users.some((u) => u.email === email.toLowerCase());
     }
 
-    /**
-     * Persiste novo usuário no localStorage.
-     * ATENÇÃO: em produção, nunca armazene senhas em texto puro — use hashing no backend.
-     */
+    // funcao para salvar um usuario novo no localStorage
     function saveUser(data) {
+        // pega os usuarios que ja existem
         const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+        // adiciona o novo usuario no array
         users.push({
     firstName: data.firstName,
-    lastName: data.lastName,
     email: data.email.toLowerCase(),
     password: data.password,
     createdAt: new Date().toISOString(),
 });
+        // salva o array atualizado de volta no localStorage
         localStorage.setItem("registeredUsers", JSON.stringify(users));
     }
 
-    // ─── Submit ───────────────────────────────────────────────────────────────
-
+    // fiz isso pra escutar o envio do formulario de cadastro
     form.addEventListener("submit", function (e) {
+        // impede a pagina de recarregar ao enviar
         e.preventDefault();
 
         // Valida todos os campos
+        // fiz isso pra validar tudo de uma vez e guardar se ta tudo certo
         const allValid =
             validateFirstName()       &
-            validateLastName()        &
             validateEmail()           &
             validatePassword()        &
             validateConfirmPassword();
 
+        // se algum campo ta invalido mostra o toast de erro e para
         if (!allValid) {
             showToast("Corrija os campos destacados antes de continuar.", "error");
             return;
         }
 
+        // se nao marcou os termos mostra erro e para
         if (!termsCheckbox.checked) {
             showToast("Aceite os Termos de Uso para continuar.", "error");
             return;
         }
 
+        // se o email ja existe mostra erro no campo e para
         if (emailAlreadyExists(emailInput.value.trim())) {
             setFieldValidity(emailInput, "emailError", false);
             document.getElementById("emailError").textContent = "Este e-mail já está cadastrado.";
@@ -226,22 +206,33 @@
         }
 
         // Simula um breve delay de rede
+        // desabilita o botao pra nao clicar duas vezes
         submitBtn.disabled = true;
+        // troca o texto do botao enquanto "cria" a conta
         submitBtn.textContent = "Criando conta…";
 
+        // usei isso pra simular um tempo de espera antes de salvar
         setTimeout(() => {
+            // chama a funcao que salva o usuario com os dados do form
             saveUser({
             firstName: firstNameInput.value.trim(),
-            lastName: lastNameInput.value.trim(),
             email: emailInput.value.trim(),
             password: passwordInput.value
 });
 
+            // mostra o toast de sucesso com o nome do usuario
             showToast(`Bem-vindo, ${firstNameInput.value.trim()}! Conta criada com sucesso.`, "success");
+            // limpa o formulario depois de salvar
             form.reset();
-            updateStrengthBar("");
+            // libera o botao de novo
             submitBtn.disabled = false;
+            // volta o texto original do botao
             submitBtn.textContent = "Criar conta";
+
+            // fiz isso pra mandar pra tela de login depois de um tempinho
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
         }, 900);
     });
 

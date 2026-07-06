@@ -166,31 +166,6 @@
             color: var(--primary-color);
         }
 
-        .strength-bar {
-            display: flex;
-            gap: 4px;
-            margin-top: 8px;
-        }
-
-        .strength-segment {
-            height: 3px;
-            flex: 1;
-            border-radius: 99px;
-            background-color: var(--border-color);
-            transition: background-color 0.3s;
-        }
-
-        .strength-segment.weak   { background-color: #F87171; }
-        .strength-segment.medium { background-color: #FBBF24; }
-        .strength-segment.strong { background-color: #34D399; }
-
-        .strength-label {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-            text-align: right;
-        }
-
         .divider {
             height: 1px;
             background-color: var(--border-color);
@@ -330,17 +305,10 @@
     <div class="card">
         <form id="registerForm" novalidate>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="firstName">Nome</label>
-                    <input type="text" id="firstName" name="firstName" placeholder="João" autocomplete="given-name">
-                    <span class="error-msg" id="firstNameError">Informe seu nome.</span>
-                </div>
-                <div class="form-group">
-                    <label for="lastName">Sobrenome</label>
-                    <input type="text" id="lastName" name="lastName" placeholder="Silva" autocomplete="family-name">
-                    <span class="error-msg" id="lastNameError">Informe seu sobrenome.</span>
-                </div>
+            <div class="form-group">
+                <label for="firstName">Nome</label>
+                <input type="text" id="firstName" name="firstName" placeholder="João" autocomplete="given-name">
+                <span class="error-msg" id="firstNameError">Informe um nome válido, com pelo menos 3 letras.</span>
             </div>
 
             <div class="form-group">
@@ -360,13 +328,6 @@
                         </svg>
                     </button>
                 </div>
-                <div class="strength-bar">
-                    <div class="strength-segment" id="s1"></div>
-                    <div class="strength-segment" id="s2"></div>
-                    <div class="strength-segment" id="s3"></div>
-                    <div class="strength-segment" id="s4"></div>
-                </div>
-                <div class="strength-label" id="strengthLabel"></div>
                 <span class="error-msg" id="passwordError">A senha deve ter pelo menos 8 caracteres.</span>
             </div>
 
@@ -397,7 +358,7 @@
         </form>
     </div>
 
-    <p class="login-link">Já tem uma conta? <a href="#">Entrar</a></p>
+    <p class="login-link">Já tem uma conta? <a href="login.html">Entrar</a></p>
 </div>
 
 <div class="toast" id="toast">
