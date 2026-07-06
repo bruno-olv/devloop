@@ -1,3 +1,107 @@
+// ───────────────────────────────────────────
+// CATÁLOGO DE PRODUTOS
+// Cada objeto representa um equipamento disponível
+// ───────────────────────────────────────────
+
+const products = window.products;
+
+const renderProducts = () => {
+
+    const productsGrid = document.getElementById('productsGrid');
+
+    productsGrid.innerHTML = '';
+
+    products.forEach(product => {
+
+        productsGrid.innerHTML += `
+        
+        <div class="product-card reveal" data-category="${product.category}">
+
+            <div class="card-image">
+
+                <img src="${product.imageMain}" alt="${product.name}" class="img-main">
+
+                <img src="${product.imageHover}" alt="${product.name}" class="img-hover">
+
+                <span class="card-chip">${product.chip}</span>
+
+                ${product.badge
+                ? `<span class="featured-badge">${product.badge}</span>`
+                : ''}
+
+            </div>
+
+            <div class="card-body">
+
+                <h3 class="card-name">${product.name}</h3>
+
+                <p class="card-category">${product.brand}</p>
+
+                <div class="card-specs">
+
+                    <span>${product.ram}</span>
+                    <br>
+
+                    <span>${product.storage}</span>
+                    <br>
+
+                    <span>${product.cpu}</span>
+
+                </div>
+
+                <p class="card-desc">
+                    ${product.description}
+                </p>
+
+                <div class="card-meta">
+
+                    <span class="status available">
+                        Disponível
+                    </span>
+
+                    <span class="delivery">
+                        Entrega 24h
+                    </span>
+
+                    <span class="insurance">
+                        Seguro incluso
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+
+                <p class="price-label">
+                    A partir de
+                </p>
+
+                <div class="card-price">
+                    R$ ${product.price}<span>/mês</span>
+                </div>
+
+                <div class="card-actions">
+
+                    <a href="product-detail.html?id=${product.id}"
+                        class="btn-detalhes">
+
+                        Ver detalhes
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+};
+
+
 // ── SCROLL REVEAL ─────────────────────────────────────────────
 // Quando um card entra na tela, adiciona a classe .visible
 // Isso faz o card aparecer suavemente (opacity 0 → 1, translateY)
@@ -20,72 +124,130 @@ document.querySelectorAll('.product-card.reveal').forEach(card => {
 
 
 // ── FILTROS ────────────────────────────────────────────────────
-// Ao clicar num filtro, esconde os cards que não pertencem
-// àquela categoria
 
 const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.product-card');
+
+const getCards = () => {
+    return document.querySelectorAll('.product-card');
+};
 
 filterBtns.forEach(btn => {
+
     btn.addEventListener('click', () => {
 
-        // Marca o botão clicado como ativo
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const filter = btn.dataset.filter; // "all", "macbook", etc.
+        const filter = btn.dataset.filter;
 
-        cards.forEach(card => {
-            const match = filter === 'all' || card.dataset.category === filter;
-            // Esconde ou mostra com transição suave
-            card.style.transition = 'opacity 0.25s, transform 0.25s';
-            card.style.opacity = match ? '1' : '0';
-            card.style.transform = match ? 'translateY(0)' : 'translateY(8px)';
-            card.style.pointerEvents = match ? 'auto' : 'none';
+        getCards().forEach(card => {
 
-            // Remove do fluxo depois da transição
-            setTimeout(() => {
-                card.style.display = match ? '' : 'none';
-            }, match ? 0 : 250);
+            const match =
+                filter === 'all' ||
+                card.dataset.category === filter;
+
+            card.style.display = match ? '' : 'none';
+
         });
 
-        checkEmpty();
+        setTimeout(() => {
+            checkEmpty();
+        }, 10);
+
     });
+
 });
 
 
 // ── BUSCA ──────────────────────────────────────────────────────
-// Filtra os cards em tempo real conforme o usuário digita
 
 const searchInput = document.getElementById('searchInput');
 
 searchInput.addEventListener('input', () => {
+
     const query = searchInput.value.toLowerCase().trim();
 
-    // Reseta os filtros de categoria quando o usuário usa a busca
-    filterBtns.forEach(b => b.classList.remove('active'));
-    document.querySelector('[data-filter="all"]').classList.add('active');
+    filterBtns.forEach(btn =>
+        btn.classList.remove('active')
+    );
 
-    cards.forEach(card => {
-        // Pega o texto visível do card pra comparar
-        const text = card.innerText.toLowerCase();
-        const match = text.includes(query);
+    document
+        .querySelector('[data-filter="all"]')
+        .classList.add('active');
 
-        card.style.display = match ? '' : 'none';
-        card.style.opacity = match ? '1' : '0';
-        card.style.transform = match ? 'translateY(0)' : 'translateY(8px)';
-        card.style.pointerEvents = match ? 'auto' : 'none';
+    getCards().forEach(card => {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        const match =
+            text.includes(query);
+
+        card.style.display =
+            match ? '' : 'none';
+
     });
 
-    checkEmpty();
+    setTimeout(() => {
+        checkEmpty();
+    }, 10);
+
 });
 
 
-// ── ESTADO VAZIO ───────────────────────────────────────────────
-// Mostra uma mensagem quando nenhum card está visível
+// ── CONTADOR DE RESULTADOS ─────────────────────────────────────
 
-function checkEmpty() {
-    const emptyState = document.getElementById('emptyState');
-    const visibleCards = [...cards].filter(c => c.style.display !== 'none');
-    emptyState.style.display = visibleCards.length === 0 ? 'block' : 'none';
-}
+const resultsCount =
+    document.getElementById('resultsCount');
+
+const updateResultsCount = () => {
+
+    const visibleCards = [...getCards()].filter(card => {
+        return window.getComputedStyle(card).display !== 'none';
+    });
+
+    const count = visibleCards.length;
+
+    resultsCount.textContent =
+        `${count} equipamento${count !== 1 ? 's' : ''} encontrado${count !== 1 ? 's' : ''}`;
+
+};
+
+
+// ── ESTADO VAZIO ───────────────────────────────────────────────
+
+const checkEmpty = () => {
+
+    const emptyState =
+        document.getElementById('emptyState');
+
+    const visibleCards =
+        [...getCards()]
+            .filter(card =>
+                card.style.display !== 'none');
+
+    if (emptyState) {
+
+        emptyState.style.display =
+            visibleCards.length === 0
+                ? 'block'
+                : 'none';
+
+    }
+
+    updateResultsCount();
+
+};
+
+
+// ── INICIALIZAÇÃO ──────────────────────────────────────────────
+
+renderProducts();
+
+document
+    .querySelectorAll('.product-card.reveal')
+    .forEach(card => {
+        revealObserver.observe(card);
+    });
+
+updateResultsCount();

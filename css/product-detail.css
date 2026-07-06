@@ -555,20 +555,35 @@ nav {
     gap: 0.6rem;
 }
 
-.btn-alugar-lg {
+.btn-alugar-lg,
+.btn-carrinho-lg {
     flex: 1;
     width: 100%;
     font-family: var(--sans);
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--accent-hi);
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.4);
     border-radius: 8px;
     padding: 0.75rem 1.25rem;
     cursor: pointer;
     letter-spacing: 0.01em;
-    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, color 0.15s;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, color 0.15s, transform 0.15s;
+}
+
+.btn-alugar-lg {
+    color: var(--accent-hi);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.btn-carrinho-lg {
+    color: #020617;
+    background: var(--accent-hi);
+    border: 1px solid var(--accent-hi);
+}
+
+.btn-alugar-lg:hover,
+.btn-carrinho-lg:hover {
+    transform: translateY(-1px);
 }
 
 .btn-alugar-lg:hover {
@@ -578,29 +593,15 @@ nav {
     box-shadow: 0 0 22px rgba(56, 189, 248, 0.3);
 }
 
-.btn-contato {
-    flex: 1;
-    font-family: var(--sans);
-    font-size: 0.875rem;
-    font-weight: 400;
-    color: var(--muted-mid);
-    background: transparent;
-    border: 1px solid var(--border-mid);
-    border-radius: 8px;
-    padding: 0.75rem 1.25rem;
-    cursor: pointer;
-    letter-spacing: 0.01em;
-    text-align: center;
-    text-decoration: none;
-    transition: color 0.15s, border-color 0.15s;
+.btn-carrinho-lg:hover {
+    background: #60a5fa;
+    border-color: #60a5fa;
+    color: #020617;
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.3);
 }
 
-.btn-contato:hover {
-    color: var(--text);
-    border-color: rgba(255, 255, 255, 0.22);
-}
 
-/* ── SECTIONS BELOW ── */
+/* ── SECTIONS DE BAIXO ── */
 .detail-sections {
     padding: 0 clamp(1.5rem, 6vw, 5rem) clamp(4rem, 8vh, 6rem);
     display: flex;
@@ -661,7 +662,7 @@ nav {
     color: var(--text);
 }
 
-/* Two-col layout for ideal + diferenciais */
+/* Two-col layout para ideal + diferenciais */
 .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -994,6 +995,101 @@ nav {
     pointer-events: auto;
 }
 
+
+/* Página de produto não encontrado */
+
+.not-found-page {
+    min-height: 100vh;
+    padding: 120px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(96, 165, 250, 0.12), transparent 35%),
+        #0b1220;
+}
+
+.not-found-card {
+    width: 100%;
+    max-width: 620px;
+    padding: 48px;
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 28px;
+    background: rgba(15, 23, 42, 0.92);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.not-found-code {
+    display: inline-flex;
+    margin-bottom: 18px;
+    padding: 8px 16px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 999px;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.not-found-card h1 {
+    margin-bottom: 14px;
+    color: #f8fafc;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+}
+
+.not-found-card p {
+    max-width: 480px;
+    margin: 0 auto 32px;
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.not-found-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.not-found-btn {
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.not-found-btn.primary {
+    color: #020617;
+    background: #38bdf8;
+    box-shadow: 0 0 24px rgba(56, 189, 248, 0.28);
+}
+
+.not-found-btn.secondary {
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.not-found-btn:hover {
+    transform: translateY(-2px);
+}
+
+.not-found-btn.primary:hover {
+    background: #60a5fa;
+}
+
+.not-found-btn.secondary:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+}
+
 /* Blur no conteúdo da página quando o menu está aberto */
 body>*:not(header):not(.nav-backdrop) {
     transition: filter 0.32s ease;
@@ -1002,6 +1098,7 @@ body>*:not(header):not(.nav-backdrop) {
 body.menu-open>*:not(header):not(.nav-backdrop) {
     filter: blur(5px);
 }
+
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
@@ -1088,6 +1185,13 @@ body.menu-open>*:not(header):not(.nav-backdrop) {
         flex-direction: column;
     }
 }
+
+@media (max-width: 600px) {
+    .detail-actions {
+        flex-direction: column;
+    }
+}
+
 
 @media (max-width: 640px) {
     .related-grid {
