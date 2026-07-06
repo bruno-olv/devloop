@@ -328,6 +328,8 @@ addToCartBtn.addEventListener('click', () => {
 
     localStorage.setItem('devloopCart', JSON.stringify(cart));
 
+    if (window.updateNavCartBadge) window.updateNavCartBadge();
+
     addToCartBtn.textContent = 'Adicionado ao carrinho ✓';
 
     setTimeout(() => {

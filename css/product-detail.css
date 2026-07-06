@@ -163,6 +163,44 @@ nav {
     gap: 0.5rem;
 }
 
+/* Cart */
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin-right: 0.25rem;
+    border-radius: 6px;
+    color: var(--muted-mid);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+}
+
+.cart-link:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.cart-badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 3px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: center;
+    box-shadow: 0 0 0 2px var(--bg);
+}
+
 .btn-signup {
     font-family: var(--sans);
     font-size: 0.8rem;
