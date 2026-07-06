@@ -150,29 +150,11 @@ nav {
     text-decoration: none;
     letter-spacing: 0.005em;
     transition: color 0.15s;
-    position: relative;
 }
 
 .menu-links a:hover,
 .menu-links a.active {
     color: var(--text);
-}
-
-.menu-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-hi));
-    transition: width 0.25s ease;
-    box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
-}
-
-.menu-links a:hover::after,
-.menu-links a.active::after {
-    width: 100%;
 }
 
 .auth-links {

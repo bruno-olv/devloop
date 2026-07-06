@@ -188,7 +188,7 @@ nav {
   margin-top: -5px;
 }
 
-details {
+.about-card {
   max-width: 850px;
   margin: 30px auto;
   padding: 25px 30px;
@@ -199,15 +199,7 @@ details {
   transition: all .3s ease;
 }
 
-details summary {
-  list-style: none;
-}
-
-details summary::-webkit-details-marker {
-  display: none;
-}
-
-details:hover {
+.about-card:hover {
   transform: translateY(-3px);
   border-color: #38BDF8;
   /*Eu tenho que lembrar dessa cor aqui*/
@@ -216,15 +208,14 @@ details:hover {
     0 0 30px rgba(0, 120, 255, .12);
 }
 
-summary {
-  cursor: pointer;
+.about-card h3 {
   font-size: 1.3rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 15px;
 }
 
-details p {
+.about-card p {
   color: #c6d0e0;
   font-size: 0.95rem;
   font-weight: 300;
@@ -324,27 +315,6 @@ header {
   text-shadow:
     0 0 14px rgba(56, 189, 248, 0.6),
     0 0 32px rgba(34, 211, 238, 0.25);
-}
-
-/* Nav links — traço de luz no hover */
-.menu-links a {
-  position: relative;
-}
-
-.menu-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-hi));
-  transition: width 0.25s ease;
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
-}
-
-.menu-links a:hover::after {
-  width: 100%;
 }
 
 /* Botão Entrar — glow persistente */
@@ -557,13 +527,13 @@ body.menu-open>*:not(header):not(.nav-backdrop) {
     color: var(--text);
   }
 
-  details {
+  .about-card {
     margin: 20px auto;
   }
 }
 
 @media (max-width: 640px) {
-  details {
+  .about-card {
     padding: 20px;
     border-radius: 12px;
   }
