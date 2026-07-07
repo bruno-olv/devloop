@@ -69,6 +69,7 @@ const loadProductDetail = async () => {
         fillRelatedProducts();
         fillProductImages();
         setupAddToCart();
+        setupBuyNow();
 
     } catch (error) {
 
@@ -397,6 +398,46 @@ const setupAddToCart = () => {
         setTimeout(() => {
             addToCartBtn.textContent = 'Adicionar ao carrinho';
         }, 1800);
+
+    });
+
+};
+
+
+// ── ALUGAR AGORA (compra direta) ─────────────────────
+
+const setupBuyNow = () => {
+
+    const buyNowBtn = document.querySelector('.btn-alugar-lg');
+    if (!buyNowBtn) return;
+
+    buyNowBtn.addEventListener('click', () => {
+
+        const cart = JSON.parse(localStorage.getItem('devloopCart')) || [];
+
+        const productAlreadyInCart = cart.find(item => item.id === currentProduct.id);
+
+        if (productAlreadyInCart) {
+            productAlreadyInCart.quantity += 1;
+        } else {
+            cart.push({
+                id: currentProduct.id,
+                name: currentProduct.name,
+                brand: currentProduct.brand,
+                price: currentProduct.price,
+                image: currentProduct.imageMain,
+                ram: currentProduct.ram,
+                storage: currentProduct.storage,
+                cpu: currentProduct.cpu,
+                quantity: 1
+            });
+        }
+
+        localStorage.setItem('devloopCart', JSON.stringify(cart));
+
+        if (window.updateNavCartBadge) window.updateNavCartBadge();
+
+        window.location.href = '../checkout.html';
 
     });
 
