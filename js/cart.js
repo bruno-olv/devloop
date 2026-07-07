@@ -42,10 +42,10 @@ if (document.readyState === 'loading') {
 function ready() {
   renderCart()
 
-   // Liga o botão "Finalizar Compra" à função de compra
-  const purchaseButton = document.querySelector('.purchase-button')
+   // Liga o botão "Finalizar Compra" à navegação para o checkout
+  const purchaseButton = document.querySelector('.btn-finalizar')
   if (purchaseButton) {
-    purchaseButton.addEventListener('click', makePurchase)
+    purchaseButton.addEventListener('click', goToCheckout)
   }
 
   // Liga o botão "Limpar carrinho" à função de limpeza
@@ -169,24 +169,16 @@ function updateTotal(cart) {
   if (totalEl) totalEl.textContent = formatPrice(total)
 }
 
-// Executa a "compra": valida o carrinho, mostra o valor total e o esvazia
-function makePurchase() {
+// Valida o carrinho e leva o usuário para a página de pagamento
+function goToCheckout() {
   const cart = getCart()
 
-  // Valida se o carrinho está vazio antes de prosseguir
   if (cart.length === 0) {
     alert('Seu carrinho está vazio!')
     return
   }
 
-  const total = cart.reduce((sum, product) => sum + product.price * product.quantity, 0)
-
-  alert(
-    `Obrigado pela sua compra!\nValor do pedido: ${formatPrice(total)}\n\nVolte sempre :)`
-  )
-
-  saveCart([]) // esvazia o carrinho após a compra
-  renderCart()
+  window.location.href = '../checkout.html'
 }
 
 // Remove todos os produtos do carrinho manualmente (botão "Limpar carrinho")

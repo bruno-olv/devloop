@@ -1,14 +1,14 @@
 // ── PAGAMENTO (checkout.html) ───────────────────────────────
-// Usa as funções pegarCarrinho / salvarCarrinho / formatarPreco do cart.js
+// Usa as funções getCart / saveCart / formatPrice do cart.js
 
 document.addEventListener("DOMContentLoaded", function () {
     const listaItens = document.getElementById("checkout-itens");
     if (!listaItens) return; // não estamos na página de pagamento
 
-    const carrinho = pegarCarrinho();
+    const carrinho = getCart();
 
     if (carrinho.length === 0) {
-        window.location.href = "cart.html";
+        window.location.href = "pages/cart.html";
         return;
     }
 
@@ -25,23 +25,23 @@ function renderizarResumoCheckout(carrinho) {
     let html = "";
 
     carrinho.forEach((item) => {
-        const subtotalItem = item.preco * item.qtd;
+        const subtotalItem = item.price * item.quantity;
         total += subtotalItem;
 
         html += `
             <div class="item-carrinho">
-                <img src="${item.imagem}" alt="${item.nome}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">
+                <img src="${item.image}" alt="${item.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;">
                 <div class="item-info">
-                    <div class="item-nome">${item.nome} <span style="color:#64748b;">x${item.qtd}</span></div>
-                    <div class="item-subtotal">${formatarPreco(subtotalItem)}</div>
+                    <div class="item-nome">${item.name} <span style="color:#64748b;">x${item.quantity}</span></div>
+                    <div class="item-subtotal">${formatPrice(subtotalItem)}</div>
                 </div>
             </div>
         `;
     });
 
     lista.innerHTML = html;
-    document.getElementById("checkout-subtotal").textContent = formatarPreco(total);
-    document.getElementById("checkout-total").textContent = formatarPreco(total);
+    document.getElementById("checkout-subtotal").textContent = formatPrice(total);
+    document.getElementById("checkout-total").textContent = formatPrice(total);
 
     montarParcelas(total);
 }
@@ -53,7 +53,7 @@ function montarParcelas(total) {
 
     let opcoes = "";
     for (let i = 1; i <= maxParcelas; i++) {
-        opcoes += `<option value="${i}">${i}x de ${formatarPreco(total / i)} sem juros</option>`;
+        opcoes += `<option value="${i}">${i}x de ${formatPrice(total / i)} sem juros</option>`;
     }
     select.innerHTML = opcoes;
 }
@@ -160,5 +160,6 @@ function finalizarPagamento(mensagem) {
     document.getElementById("sucessoMsg").textContent = mensagem;
     document.getElementById("sucessoPagamento").hidden = false;
 
-    salvarCarrinho([]); // esvazia o carrinho e atualiza o badge do menu
+    saveCart([]); // esvazia o carrinho
+    if (window.updateNavCartBadge) window.updateNavCartBadge(); // atualiza o badge do menu
 }

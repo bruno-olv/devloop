@@ -96,16 +96,6 @@ nav {
   color: var(--text);
 }
 
-.cart-badge {
-  background: var(--accent);
-  color: #0f172a;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 999px;
-  margin-left: 4px;
-}
-
 .auth-links {
   display: flex;
   align-items: center;

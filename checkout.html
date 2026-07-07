@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevLoop | Pagamento</title>
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/checkout.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/checkout.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
@@ -23,18 +23,26 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="../index.html">Dev<em>Loop</em></a>
+                <a href="index.html">Dev<em>Loop</em></a>
                 <span class="logo-tag">For Developers</span>
             </div>
             <div class="menu-links">
-                <a href="../index.html">Home</a>
-                <a href="products.html">Produtos</a>
-                <a href="about.html">Sobre Nós</a>
-                <a href="cart.html">Carrinho <span class="cart-badge" id="cart-badge" hidden>0</span></a>
+                <a href="index.html">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
             </div>
             <div class="auth-links">
-                <a href="register.html" class="btn-signup">Cadastrar</a>
-                <a href="login.html" class="btn-login">Entrar</a>
+                <a href="pages/cart.html" class="cart-link" aria-label="Carrinho">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
+                        <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
+                    </svg>
+                    <span id="navCartBadge" class="cart-badge" hidden>0</span>
+                </a>
+                <a href="pages/register.html" class="btn-signup">Cadastrar</a>
+                <a href="pages/login.html" class="btn-login">Entrar</a>
             </div>
 
             <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -78,17 +86,17 @@
 
                 <div class="payment-tabs">
                     <button type="button" class="payment-tab active" data-metodo="pix">
-                        <img src="../assets/icons/pix.png" alt="Pix"> Pix
+                        <img src="assets/icons/pix.png" alt="Pix"> Pix
                     </button>
                     <button type="button" class="payment-tab" data-metodo="cartao">
-                        <img src="../assets/icons/cartoes.png" alt="Cartão"> Cartão de crédito
+                        <img src="assets/icons/cartoes.png" alt="Cartão"> Cartão de crédito
                     </button>
                 </div>
 
                 <!-- Painel Pix -->
                 <div id="painel-pix" class="painel-pagamento">
                     <p class="pix-instrucao">Escaneie o QR Code com o app do seu banco ou copie o código abaixo.</p>
-                    <img src="../assets/icons/qr code.png" alt="QR Code Pix" class="qrcode-img">
+                    <img src="assets/icons/qr code.png" alt="QR Code Pix" class="qrcode-img">
                     <div class="pix-codigo">
                         <input type="text" id="pixCodigo" readonly>
                         <button type="button" id="btnCopiarPix">Copiar</button>
@@ -144,7 +152,7 @@
             <div class="sucesso-icone">✓</div>
             <h2>Pagamento aprovado!</h2>
             <p id="sucessoMsg"></p>
-            <a href="products.html" class="btn-detalhes">Voltar para produtos</a>
+            <a href="pages/products.html" class="btn-detalhes">Voltar para produtos</a>
         </div>
 
     </section>
@@ -157,9 +165,9 @@
                 <p>Hardware de alta performance para desenvolvedores, estudantes e equipes de tecnologia.</p>
             </div>
             <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="products.html">Produtos</a>
-                <a href="about.html">Sobre Nós</a>
+                <a href="index.html">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
             </div>
         </div>
         <div class="footer-bottom">
@@ -201,8 +209,8 @@
         })();
     </script>
 
-    <script src="../js/cart.js"></script>
-    <script src="../js/checkout.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
 
 </body>
 </html>
