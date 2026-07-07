@@ -1,0 +1,146 @@
+/* reset geral, tira margem e padding padrão do navegador */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box; /* padding e border entram na largura, não somam */
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* variáveis de cor pra não ficar repetindo hex em todo lugar */
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --border:#334155;
+    --primary:#38bdf8;
+    --primary-hover:#22d3ee;
+    --text:#f8fafc;
+    --secondary:#94a3b8;
+}
+
+/* centraliza o card de login na tela toda */
+body{
+    background:var(--bg);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+/* largura máxima do formulário pra não esticar em tela grande */
+.container{
+    width:100%;
+    max-width:420px;
+}
+
+/* área do logo, título e descrição */
+.logo{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* quadradinho do ícone com gradiente */
+.logo-icon{
+    width:60px;
+    height:60px;
+    margin:auto;
+    border-radius:15px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-hover));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#0f172a;
+    font-size:26px;
+    font-weight:bold;
+}
+
+.logo h1{
+    margin-top:15px;
+    color:white;
+}
+
+.logo p{
+    color:var(--secondary);
+    margin-top:5px;
+}
+
+/* o cartão em si, onde fica o form */
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:35px;
+}
+
+/* espaço entre cada campo do form */
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    color:var(--secondary);
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+/* estilo padrão dos inputs */
+input{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#111827;
+    color:white;
+    outline:none;
+    transition:.2s;
+}
+
+/* borda azul e leve glow quando o input tá focado */
+input:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(56,189,248,.15);
+}
+
+/* botão de login, ocupa a largura toda */
+button{
+    width:100%;
+    border:none;
+    border-radius:10px;
+    padding:14px;
+    cursor:pointer;
+    font-weight:700;
+    margin-top:10px;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-hover)
+    );
+    color:#0f172a;
+    transition:.2s;
+}
+
+/* efeito hover mais sutil, só diminui a opacidade */
+button:hover{
+    opacity:.9;
+}
+
+/* mensagem de erro/sucesso abaixo do form */
+.msg{
+    text-align:center;
+    margin-top:15px;
+    color:white;
+}
+
+/* texto de "não tem conta? cadastre-se" */
+.register-link{
+    text-align:center;
+    margin-top:20px;
+    color:var(--secondary);
+}
+
+.register-link a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
