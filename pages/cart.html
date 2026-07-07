@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevLoop | Carrinho</title>
-        <link rel="stylesheet" href="../css/base.css">
-        <link rel="stylesheet" href="../css/cart.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-           rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
-    <body>
-        <div class="glow-wrap">
+
+<body>
+    <div class="glow-wrap">
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
         <div class="glow-orb glow-orb-3"></div>
@@ -35,7 +37,8 @@
             <div class="auth-links">
                 <a href="cart.html" class="cart-link active" aria-label="Carrinho">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
                         <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
                     </svg>
@@ -55,37 +58,37 @@
             </button>
         </nav>
     </header>
-    
-        <!-- CARRINHO -->
-        <section class="container normal-section cart-layout">
+
+    <!-- CARRINHO -->
+    <section class="container normal-section cart-layout">
         <div class="layout">
             <h2 class="section-title">
-                    Carrinho <span id="badge-inline" class="badge-inline" hidden></span>
-                </h2>
+                Carrinho <span id="badge-inline" class="badge-inline" hidden></span>
+            </h2>
 
             <div class="cart-content">
                 <table class="cart-table">
-                <thead>
-                    <tr>
-                    <th class="table-head-item first-col">Item</th>
-                    <th class="table-head-item second-col">Preço</th>
-                    <th class="table-head-item third-col">Quantidade</th>
-                    </tr>
-                </thead>
+                    <thead>
+                        <tr>
+                            <th class="table-head-item first-col">Item</th>
+                            <th class="table-head-item second-col">Preço/Mês</th>
+                            <th class="table-head-item third-col">Meses</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <!-- os produtos adicionados vão aparecer aqui via JS -->
-                </tbody>
+                    <tbody>
+                        <!-- os produtos adicionados vão aparecer aqui via JS -->
+                    </tbody>
                 </table>
 
                 <div class="cart-summary">
                     <!-- Subtotal, Frete, Total, botões -->
                     <div id="lista-carrinho" class="lista-carrinho"></div>
                     <div style="font-size:48px;"></div>
-                
+
                     <div id="resumo" class="resumo" hidden>
                         <div class="resumo-linha">
-                            <span>Subtotal</span>
+                            <span>Subtotal Mensal</span>
                             <span id="subtotal">R$ 0,00</span>
                         </div>
                         <div class="resumo-linha">
@@ -96,13 +99,13 @@
                             <span>Total</span>
                             <span id="total">R$ 0,00</span>
                         </div>
-                            <button class="btn-finalizar">Finalizar Compra</button>
-                            <button id="btn-limpar" class="btn-limpar">Limpar carrinho</button>
+                        <button class="btn-finalizar">Finalizar Compra</button>
+                        <button id="btn-limpar" class="btn-limpar">Limpar carrinho</button>
                     </div>
                 </div>
             </div>
         </div>
-        </section>
+    </section>
 
     <!--- FOOTER -->
     <footer class="footer">
@@ -165,4 +168,5 @@
     <script src="../js/cart.js"></script>
     <script src="../js/session.js"></script>
 </body>
+
 </html>

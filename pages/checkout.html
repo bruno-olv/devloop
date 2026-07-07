@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLoop | Pagamento</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="glow-wrap">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">Dev<em>Loop</em></a>
+                <span class="logo-tag">For Developers</span>
+            </div>
+            <div class="menu-links">
+                <a href="index.html">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
+            </div>
+            <div class="auth-links">
+                <a href="pages/cart.html" class="cart-link" aria-label="Carrinho">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
+                        <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
+                    </svg>
+                    <span id="navCartBadge" class="cart-badge" hidden>0</span>
+                </a>
+                <a href="pages/register.html" class="btn-signup">Cadastrar</a>
+                <a href="pages/login.html" class="btn-login">Entrar</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+                <svg class="icon-menu" width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <svg class="icon-close" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none">
+                    <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <section class="checkout-section">
+
+        <p class="checkout-title">Pagamento</p>
+
+        <div class="checkout-layout" id="checkoutLayout">
+
+            <!-- Resumo do pedido -->
+            <div class="checkout-resumo">
+                <h2 class="section-title">Resumo do pedido</h2>
+                <div id="checkout-itens" class="lista-carrinho"></div>
+                <div class="resumo-linha">
+                    <span>Subtotal</span>
+                    <span id="checkout-subtotal">R$ 0,00</span>
+                </div>
+                <div class="resumo-linha">
+                    <span>Frete</span>
+                    <span style="color:#4ade80;">Grátis</span>
+                </div>
+                <div class="resumo-linha total-linha">
+                    <span>Total</span>
+                    <span id="checkout-total">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- Forma de pagamento -->
+            <div class="checkout-pagamento">
+                <h2 class="section-title">Forma de pagamento</h2>
+
+                <div class="payment-tabs">
+                    <button type="button" class="payment-tab active" data-metodo="pix">
+                        <img src="assets/icons/pix.png" alt="Pix"> Pix
+                    </button>
+                    <button type="button" class="payment-tab" data-metodo="cartao">
+                        <img src="assets/icons/cartoes.png" alt="Cartão"> Cartão de crédito
+                    </button>
+                </div>
+
+                <!-- Painel Pix -->
+                <div id="painel-pix" class="painel-pagamento">
+                    <p class="pix-instrucao">Escaneie o QR Code com o app do seu banco ou copie o código abaixo.</p>
+                    <img src="assets/icons/qr code.png" alt="QR Code Pix" class="qrcode-img">
+                    <div class="pix-codigo">
+                        <input type="text" id="pixCodigo" readonly>
+                        <button type="button" id="btnCopiarPix">Copiar</button>
+                    </div>
+                    <button type="button" id="btnConfirmarPix" class="btn-pagar">Já paguei</button>
+                </div>
+
+                <!-- Painel Cartão -->
+                <div id="painel-cartao" class="painel-pagamento" hidden>
+                    <form id="formCartao" novalidate>
+                        <div class="form-group">
+                            <label for="numeroCartao">Número do cartão</label>
+                            <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" maxlength="19"
+                                inputmode="numeric" autocomplete="cc-number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nomeCartao">Nome impresso no cartão</label>
+                            <input type="text" id="nomeCartao" placeholder="Como está no cartão" autocomplete="cc-name">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="validadeCartao">Validade</label>
+                                <input type="text" id="validadeCartao" placeholder="MM/AA" maxlength="5"
+                                    inputmode="numeric" autocomplete="cc-exp">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvvCartao">CVV</label>
+                                <input type="text" id="cvvCartao" placeholder="123" maxlength="4" inputmode="numeric"
+                                    autocomplete="cc-csc">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="parcelas">Parcelas</label>
+                            <select id="parcelas"></select>
+                        </div>
+
+                        <span class="erro-cartao" id="erroCartao"></span>
+
+                        <button type="submit" class="btn-pagar">Pagar</button>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Tela de sucesso -->
+        <div id="sucessoPagamento" class="sucesso-pagamento" hidden>
+            <div class="sucesso-icone">✓</div>
+            <h2>Pagamento aprovado!</h2>
+            <p id="sucessoMsg"></p>
+            <a href="pages/products.html" class="btn-detalhes">Voltar para produtos</a>
+        </div>
+
+    </section>
+
+    <!--- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Dev<em>Loop</em></h3>
+                <p>Hardware de alta performance para desenvolvedores, estudantes e equipes de tecnologia.</p>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 DevLoop. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('navToggle');
+            var menu = document.querySelector('.menu-links');
+            var backdrop = document.getElementById('navBackdrop');
+            if (!btn || !menu) return;
+            function openMenu() {
+                menu.classList.add('open');
+                if (backdrop) backdrop.classList.add('open');
+                document.body.classList.add('menu-open');
+                btn.querySelector('.icon-menu').style.display = 'none';
+                btn.querySelector('.icon-close').style.display = '';
+                btn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                menu.classList.remove('open');
+                if (backdrop) backdrop.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                btn.querySelector('.icon-menu').style.display = '';
+                btn.querySelector('.icon-close').style.display = 'none';
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+            btn.addEventListener('click', function () {
+                menu.classList.contains('open') ? closeMenu() : openMenu();
+            });
+            if (backdrop) backdrop.addEventListener('click', closeMenu);
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', closeMenu);
+            });
+        })();
+    </script>
+
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+
+</body>
+
+</html>
+
+
+aaa

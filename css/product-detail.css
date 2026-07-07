@@ -55,7 +55,6 @@ body {
     opacity: 0.10;
     top: -220px;
     left: -100px;
-    animation: float-orb 14s ease-in-out infinite;
 }
 
 .glow-orb-2 {
@@ -65,7 +64,6 @@ body {
     opacity: 0.07;
     bottom: -80px;
     right: 60px;
-    animation: float-orb 18s ease-in-out infinite reverse;
 }
 
 .glow-orb-3 {
@@ -77,20 +75,8 @@ body {
     left: 55%;
     transform: translate(-50%, -50%);
     filter: blur(160px);
-    animation: float-orb 22s ease-in-out infinite 5s;
 }
 
-@keyframes float-orb {
-
-    0%,
-    100% {
-        transform: translateY(0) scale(1);
-    }
-
-    50% {
-        transform: translateY(-28px) scale(1.06);
-    }
-}
 
 /* ── PAGE WRAPPER ── */
 .page-content {
