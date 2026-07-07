@@ -1,15 +1,20 @@
-// ── BUSCA O PRODUTO PELA URL ─────────────────────────────
+// ───────────────────────────────────────────
+// DETALHES DO PRODUTO VIA BACKEND SPRING
+// ───────────────────────────────────────────
 
-const products = window.products;
+const API_URL = 'http://localhost:8080/produtos';
+
+let products = [];
+let currentProduct = null;
 
 const params = new URLSearchParams(window.location.search);
-
 const productId = params.get('id');
 
-// Se o produto não for encontrado, mostra uma mensagem simples
-const currentProduct = products.find(product => product.id === productId);
 
-if (!currentProduct) {
+// ── PRODUTO NÃO ENCONTRADO ─────────────────────
+
+const showProductNotFound = () => {
+
     document.body.innerHTML = `
         <main class="not-found-page">
             <section class="not-found-card">
@@ -35,305 +40,369 @@ if (!currentProduct) {
         </main>
     `;
 
-    throw new Error('Produto não encontrado');
-}
+};
 
-document.title = `${currentProduct.name} | DevLoop`;
+
+// ── CARREGAR PRODUTO DO BACKEND ─────────────────────
+
+const loadProductDetail = async () => {
+
+    try {
+
+        const productResponse = await fetch(`${API_URL}/${productId}`);
+        currentProduct = await productResponse.json();
+
+        const productsResponse = await fetch(API_URL);
+        products = await productsResponse.json();
+
+        if (!currentProduct) {
+            showProductNotFound();
+            return;
+        }
+
+        document.title = `${currentProduct.name} | DevLoop`;
+
+        fillProductInfo();
+        fillQuickSpecs();
+        fillTechnicalSpecs();
+        fillIdealFor();
+        fillRelatedProducts();
+        fillProductImages();
+        setupAddToCart();
+
+    } catch (error) {
+
+        console.error('Erro ao carregar detalhes do produto:', error);
+        showProductNotFound();
+
+    }
+
+};
 
 
 // ── PREENCHIMENTO DAS INFORMAÇÕES DO PRODUTO ─────────────────
 
-document.getElementById('breadcrumbProductName').textContent =
-    currentProduct.name;
+const fillProductInfo = () => {
 
-document.getElementById('productChip').textContent =
-    currentProduct.chip;
+    document.getElementById('breadcrumbProductName').textContent =
+        currentProduct.name;
 
-document.getElementById('productBadge').textContent =
-    currentProduct.badge;
+    document.getElementById('productChip').textContent =
+        currentProduct.chip;
 
-document.getElementById('productBrand').textContent =
-    currentProduct.brand;
+    document.getElementById('productBadge').textContent =
+        currentProduct.badge;
 
-document.getElementById('productName').textContent =
-    currentProduct.name;
+    document.getElementById('productBrand').textContent =
+        currentProduct.brand;
 
-document.getElementById('productDescription').textContent =
-    currentProduct.description;
+    document.getElementById('productName').textContent =
+        currentProduct.name;
 
-document.getElementById('productPrice').textContent =
-    `R$ ${currentProduct.price}`;
+    document.getElementById('productDescription').textContent =
+        currentProduct.fullDescription;
+
+    document.getElementById('productPrice').textContent =
+        `R$ ${currentProduct.price}`;
+
+};
 
 
 // ── SPECS RÁPIDAS ─────────────────────
 
-const quickRam = currentProduct.ram.replace('RAM', '').trim();
-const quickStorage = currentProduct.storage.replace('SSD', '').trim();
+const fillQuickSpecs = () => {
 
-document.getElementById('quickRam').textContent = quickRam;
-document.getElementById('quickStorage').textContent = quickStorage;
-document.getElementById('quickCpu').textContent = currentProduct.cpu;
-document.getElementById('quickDisplay').textContent = currentProduct.display;
+    const quickRam = currentProduct.ram.replace('RAM', '').trim();
+    const quickStorage = currentProduct.storage.replace('SSD', '').trim();
+
+    document.getElementById('quickRam').textContent = quickRam;
+    document.getElementById('quickStorage').textContent = quickStorage;
+    document.getElementById('quickCpu').textContent = currentProduct.cpu;
+    document.getElementById('quickDisplay').textContent = currentProduct.display;
+
+};
 
 
 // ── ESPECIFICAÇÕES TÉCNICAS ─────────────────────
 
-const technicalSpecsGrid = document.getElementById('technicalSpecsGrid');
+const fillTechnicalSpecs = () => {
 
-const technicalSpecs = [
-    {
-        title: 'Memória',
-        value: currentProduct.ram
-    },
-    {
-        title: 'Armazenamento',
-        value: currentProduct.storage
-    },
-    {
-        title: 'Processador',
-        value: currentProduct.cpu
-    },
-    {
-        title: 'Sistema Operacional',
-        value: currentProduct.os
-    },
-    {
-        title: 'Tela',
-        value: currentProduct.displayDetail
-    },
-    {
-        title: 'Conectividade',
-        value: currentProduct.connectivity
-    }
-];
+    const technicalSpecsGrid = document.getElementById('technicalSpecsGrid');
 
-technicalSpecsGrid.innerHTML = '';
+    const technicalSpecs = [
+        {
+            title: 'Memória',
+            value: currentProduct.ram
+        },
+        {
+            title: 'Armazenamento',
+            value: currentProduct.storage
+        },
+        {
+            title: 'Processador',
+            value: currentProduct.cpu
+        },
+        {
+            title: 'Sistema Operacional',
+            value: currentProduct.os
+        },
+        {
+            title: 'Tela',
+            value: currentProduct.displayDetail
+        },
+        {
+            title: 'Conectividade',
+            value: currentProduct.connectivity
+        }
+    ];
 
-technicalSpecs.forEach(spec => {
+    technicalSpecsGrid.innerHTML = '';
 
-    technicalSpecsGrid.innerHTML += `
-        <div class="spec-item">
-            <span class="spec-key">${spec.title}</span>
-            <span class="spec-val">${spec.value}</span>
-        </div>
-    `;
+    technicalSpecs.forEach(spec => {
 
-});
+        technicalSpecsGrid.innerHTML += `
+            <div class="spec-item">
+                <span class="spec-key">${spec.title}</span>
+                <span class="spec-val">${spec.value}</span>
+            </div>
+        `;
+
+    });
+
+};
 
 
 // ── IDEAL PARA ─────────────────────
 
-const idealForList = document.getElementById('idealForList');
+const fillIdealFor = () => {
 
-let idealFor = [];
+    const idealForList = document.getElementById('idealForList');
 
-if (currentProduct.brand === 'Apple') {
+    let idealFor = [];
 
-    idealFor = [
-        'Desenvolvimento iOS',
-        'Desenvolvimento Web',
-        'Docker & Containers',
-        'Edição de vídeo',
-        'Projetos profissionais'
-    ];
+    if (currentProduct.brand === 'Apple') {
 
-} else if (currentProduct.name.includes('ProArt')) {
+        idealFor = [
+            'Desenvolvimento iOS',
+            'Desenvolvimento Web',
+            'Docker & Containers',
+            'Edição de vídeo',
+            'Projetos profissionais'
+        ];
 
-    idealFor = [
-        'Criação de conteúdo',
-        'Design gráfico',
-        'Edição de vídeo',
-        'Aplicações com IA',
-        'Projetos criativos'
-    ];
+    } else if (currentProduct.name.includes('ProArt')) {
 
-} else if (currentProduct.category === 'thinkpad') {
+        idealFor = [
+            'Criação de conteúdo',
+            'Design gráfico',
+            'Edição de vídeo',
+            'Aplicações com IA',
+            'Projetos criativos'
+        ];
 
-    idealFor = [
-        'Desenvolvimento Web',
-        'Backend',
-        'Ambientes Linux',
-        'Produtividade profissional',
-        'Projetos acadêmicos'
-    ];
+    } else if (currentProduct.category === 'thinkpad') {
 
-} else if (currentProduct.category === 'performance') {
+        idealFor = [
+            'Desenvolvimento Web',
+            'Backend',
+            'Ambientes Linux',
+            'Produtividade profissional',
+            'Projetos acadêmicos'
+        ];
 
-    idealFor = [
-        'Desenvolvimento Full Stack',
-        'Virtualização',
-        'Docker & Containers',
-        'Multitarefa avançada',
-        'Projetos de alta demanda'
-    ];
+    } else if (currentProduct.category === 'performance') {
 
-} else if (currentProduct.category === 'workstation') {
+        idealFor = [
+            'Desenvolvimento Full Stack',
+            'Virtualização',
+            'Docker & Containers',
+            'Multitarefa avançada',
+            'Projetos de alta demanda'
+        ];
 
-    idealFor = [
-        'Engenharia',
-        'Modelagem 3D',
-        'Renderização',
-        'Inteligência Artificial',
-        'Aplicações profissionais'
-    ];
+    } else if (currentProduct.category === 'workstation') {
 
-}
+        idealFor = [
+            'Engenharia',
+            'Modelagem 3D',
+            'Renderização',
+            'Inteligência Artificial',
+            'Aplicações profissionais'
+        ];
 
-idealForList.innerHTML = '';
+    }
 
-idealFor.forEach(item => {
+    idealForList.innerHTML = '';
 
-    idealForList.innerHTML += `
-        <div class="check-item">
-            <span class="check-icon">✓</span>${item}
-        </div>
-    `;
+    idealFor.forEach(item => {
 
-});
+        idealForList.innerHTML += `
+            <div class="check-item">
+                <span class="check-icon">✓</span>${item}
+            </div>
+        `;
+
+    });
+
+};
 
 
 // ── PRODUTOS RELACIONADOS ─────────────────────
 
-const relatedProductsGrid = document.getElementById('relatedProductsGrid');
+const fillRelatedProducts = () => {
 
-// Primeiro tenta pegar produtos da mesma categoria
-let relatedProducts = products.filter(product => {
-    return product.category === currentProduct.category &&
-        product.id !== currentProduct.id;
-});
+    const relatedProductsGrid = document.getElementById('relatedProductsGrid');
 
-// Se tiver menos de 3, completa com outros produtos do catálogo
-if (relatedProducts.length < 3) {
-
-    const otherProducts = products.filter(product => {
-        return product.category !== currentProduct.category &&
+    let relatedProducts = products.filter(product => {
+        return product.category === currentProduct.category &&
             product.id !== currentProduct.id;
     });
 
-    relatedProducts = relatedProducts.concat(otherProducts);
-}
+    if (relatedProducts.length < 3) {
 
-// Limita para mostrar apenas 3 produtos
-relatedProducts = relatedProducts.slice(0, 3);
+        const otherProducts = products.filter(product => {
+            return product.category !== currentProduct.category &&
+                product.id !== currentProduct.id;
+        });
 
-relatedProductsGrid.innerHTML = '';
+        relatedProducts = relatedProducts.concat(otherProducts);
+    }
 
-relatedProducts.forEach(product => {
+    relatedProducts = relatedProducts.slice(0, 3);
 
-    relatedProductsGrid.innerHTML += `
-        <div class="product-card">
-            <div class="card-image">
-                <img 
-                    src="${product.imageMain}" 
-                    alt="${product.name}"
-                    onerror="this.style.opacity='.2'">
-                <span class="card-chip">${product.chip}</span>
+    relatedProductsGrid.innerHTML = '';
+
+    relatedProducts.forEach(product => {
+
+        relatedProductsGrid.innerHTML += `
+            <div class="product-card">
+                <div class="card-image">
+                    <img 
+                        src="${product.imageMain}" 
+                        alt="${product.name}"
+                        onerror="this.style.opacity='.2'">
+                    <span class="card-chip">${product.chip}</span>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-category">${product.brand}</p>
+                    <h3 class="card-name">${product.name}</h3>
+                    <p class="card-specs">${product.ram} · ${product.storage} · ${product.cpu}</p>
+                </div>
+
+                <div class="card-footer">
+                    <span class="card-price">R$ ${product.price}<span>/mês</span></span>
+                    <a href="product-detail.html?id=${product.id}" class="btn-ver">Ver detalhes</a>
+                </div>
             </div>
+        `;
 
-            <div class="card-body">
-                <p class="card-category">${product.brand}</p>
-                <h3 class="card-name">${product.name}</h3>
-                <p class="card-specs">${product.ram} · ${product.storage} · ${product.cpu}</p>
-            </div>
+    });
 
-            <div class="card-footer">
-                <span class="card-price">R$ ${product.price}<span>/mês</span></span>
-                <a href="product-detail.html?id=${product.id}" class="btn-ver">Ver detalhes</a>
-            </div>
-        </div>
-    `;
-
-});
+};
 
 
 // ── IMAGENS DO PRODUTO ─────────────────────
 
-const mainImage = document.getElementById('mainImage');
-const productThumbs = document.getElementById('productThumbs');
+const fillProductImages = () => {
 
-const productFolder = currentProduct.imageMain.replace('/img1.png', '');
+    const mainImage = document.getElementById('mainImage');
+    const productThumbs = document.getElementById('productThumbs');
 
-const productImages = [
-    `${productFolder}/img1.png`,
-    `${productFolder}/img2.png`,
-    `${productFolder}/img3.png`,
-    `${productFolder}/img4.png`,
-    `${productFolder}/img5.png`
-];
+    const productFolder = currentProduct.imageMain.replace('/img1.png', '');
 
-mainImage.src = productImages[0];
-mainImage.alt = currentProduct.name;
+    const productImages = [
+        `${productFolder}/img1.png`,
+        `${productFolder}/img2.png`,
+        `${productFolder}/img3.png`,
+        `${productFolder}/img4.png`,
+        `${productFolder}/img5.png`
+    ];
 
-productThumbs.innerHTML = '';
+    mainImage.src = productImages[0];
+    mainImage.alt = currentProduct.name;
 
-productImages.forEach((image, index) => {
+    productThumbs.innerHTML = '';
 
-    productThumbs.innerHTML += `
-        <img 
-            class="thumb ${index === 0 ? 'active' : ''}" 
-            src="${image}" 
-            alt="${currentProduct.name}">
-    `;
+    productImages.forEach((image, index) => {
 
-});
+        const thumb = document.createElement('img');
 
+        thumb.classList.add('thumb');
 
-// ── GALERIA DE IMAGENS ─────────────────────
-// Ao clicar em uma miniatura, ela vira a imagem principal
+        if (index === 0) {
+            thumb.classList.add('active');
+        }
 
-const thumbs = document.querySelectorAll('.thumb');
+        thumb.src = image;
+        thumb.alt = currentProduct.name;
 
-thumbs.forEach(thumb => {
+        thumb.onerror = () => {
+            thumb.remove();
+        };
 
-    thumb.addEventListener('click', () => {
+        thumb.addEventListener('click', () => {
 
-        mainImage.src = thumb.src;
+            mainImage.src = thumb.src;
 
-        thumbs.forEach(t => {
-            t.classList.remove('active');
+            document
+                .querySelectorAll('.thumb')
+                .forEach(t => t.classList.remove('active'));
+
+            thumb.classList.add('active');
+
         });
 
-        thumb.classList.add('active');
+        productThumbs.appendChild(thumb);
 
     });
 
-});
+};
 
 
 // ── ADICIONAR AO CARRINHO ─────────────────────
 
-const addToCartBtn = document.getElementById('addToCartBtn');
+const setupAddToCart = () => {
 
-addToCartBtn.addEventListener('click', () => {
+    const addToCartBtn = document.getElementById('addToCartBtn');
 
-    const cart = JSON.parse(localStorage.getItem('devloopCart')) || [];
+    addToCartBtn.addEventListener('click', () => {
 
-    const productAlreadyInCart = cart.find(item => item.id === currentProduct.id);
+        const cart = JSON.parse(localStorage.getItem('devloopCart')) || [];
 
-    if (productAlreadyInCart) {
-        productAlreadyInCart.quantity += 1;
-    } else {
-        cart.push({
-            id: currentProduct.id,
-            name: currentProduct.name,
-            brand: currentProduct.brand,
-            price: currentProduct.price,
-            image: currentProduct.imageMain,
-            ram: currentProduct.ram,
-            storage: currentProduct.storage,
-            cpu: currentProduct.cpu,
-            quantity: 1
-        });
-    }
+        const productAlreadyInCart = cart.find(item => item.id === currentProduct.id);
 
-    localStorage.setItem('devloopCart', JSON.stringify(cart));
+        if (productAlreadyInCart) {
+            productAlreadyInCart.quantity += 1;
+        } else {
+            cart.push({
+                id: currentProduct.id,
+                name: currentProduct.name,
+                brand: currentProduct.brand,
+                price: currentProduct.price,
+                image: currentProduct.imageMain,
+                ram: currentProduct.ram,
+                storage: currentProduct.storage,
+                cpu: currentProduct.cpu,
+                quantity: 1
+            });
+        }
 
-    if (window.updateNavCartBadge) window.updateNavCartBadge();
+        localStorage.setItem('devloopCart', JSON.stringify(cart));
 
-    addToCartBtn.textContent = 'Adicionado ao carrinho ✓';
+        if (window.updateNavCartBadge) window.updateNavCartBadge();
 
-    setTimeout(() => {
-        addToCartBtn.textContent = 'Adicionar ao carrinho';
-    }, 1800);
+        addToCartBtn.textContent = 'Adicionado ao carrinho ✓';
 
-});
+        setTimeout(() => {
+            addToCartBtn.textContent = 'Adicionar ao carrinho';
+        }, 1800);
+
+    });
+
+};
+
+
+// ── INICIALIZAÇÃO ─────────────────────
+
+loadProductDetail();

@@ -1022,6 +1022,57 @@ body.menu-open>*:not(header):not(.nav-backdrop) {
   filter: blur(5px);
 }
 
+
+/* Botões dos cards da Home */
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.card-actions .btn-detalhes,
+.card-actions .btn-add-cart {
+  flex: 1;
+  height: 34px;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.card-actions .btn-detalhes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-mid);
+  background: transparent;
+  border: 1px solid var(--border-mid);
+}
+
+.card-actions .btn-detalhes:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-actions .btn-add-cart {
+  color: var(--accent-hi);
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+}
+
+.card-actions .btn-add-cart:hover {
+  color: #fff;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: var(--accent-hi);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.22);
+}
+
 /* ── RESPONSIVE ───────────────────────────────── */
 @media (max-width: 768px) {
   .nav-toggle {

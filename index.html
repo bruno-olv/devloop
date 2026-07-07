@@ -27,7 +27,8 @@
       <div class="auth-links">
         <a href="pages/cart.html" class="cart-link" aria-label="Carrinho">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
+              stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
             <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
             <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
           </svg>
@@ -58,111 +59,13 @@
 
   <section class="products-section">
     <div class="products-header">
-      <h2 class="section-title reveal">Disponíveis agora</h2>
-      <div class="carousel-controls">
-        <button class="carousel-btn" onclick="moverCarrossel(-1)">&#8592;</button>
-        <button class="carousel-btn" onclick="moverCarrossel(1)">&#8594;</button>
+      <div>
+        <p class="section-eyebrow">Catálogo</p>
+        <h2 class="section-title">Disponíveis agora</h2>
       </div>
     </div>
 
-    <div class="carousel-track" id="carousel-track">
-
-      <!-- MacBook Pro M4 -->
-      <div class="product-card reveal">
-        <div class="card-image">
-          <img src="assets/images/MacBook M4 Pro/img1.png" alt="MacBook Pro M4" class="card-img">
-          <span class="card-chip">M4 Pro</span>
-        </div>
-        <div class="card-body">
-          <p class="card-name">MacBook Pro M4</p>
-          <p class="card-specs">M4 Pro · 24 GB RAM · 512 GB SSD<br>14" Liquid Retina XDR</p>
-          <div class="card-footer">
-            <p class="card-price">R$ 890<span>/mês</span></p>
-            <div class="card-actions">
-              <a href="pages/products.html" class="btn-detalhes">Detalhes</a>
-              <button class="btn-alugar">Alugar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ThinkPad X1 Carbon -->
-      <div class="product-card reveal">
-        <div class="card-image">
-          <img src="assets/images/ThinkPad X1 Carbon Gen 12/img1.png" alt="ThinkPad X1 Carbon" class="card-img">
-          <span class="card-chip">Core Ultra 7</span>
-        </div>
-        <div class="card-body">
-          <p class="card-name">ThinkPad X1 Carbon</p>
-          <p class="card-specs">Core Ultra 7 · 32 GB RAM · 1 TB SSD<br>14" IPS 2.8K</p>
-          <div class="card-footer">
-            <p class="card-price">R$ 690<span>/mês</span></p>
-            <div class="card-actions">
-              <a href="pages/products.html" class="btn-detalhes">Detalhes</a>
-              <button class="btn-alugar">Alugar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dell XPS 15 -->
-      <div class="product-card reveal">
-        <div class="card-image">
-          <img src="assets/images/Dell XPS 15/img1.png" alt="Dell XPS 15" class="card-img">
-          <span class="card-chip">Core i9</span>
-        </div>
-        <div class="card-body">
-          <p class="card-name">Dell XPS 15</p>
-          <p class="card-specs">Core i9 · 32 GB RAM · 1 TB SSD<br>15.6" OLED 4K</p>
-          <div class="card-footer">
-            <p class="card-price">R$ 750<span>/mês</span></p>
-            <div class="card-actions">
-              <a href="pages/products.html" class="btn-detalhes">Detalhes</a>
-              <button class="btn-alugar">Alugar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Workstation RTX 4090 -->
-      <div class="product-card reveal">
-        <div class="card-image">
-          <img src="assets/images/HP Z2 Tower G9/img1.png" alt="Workstation RTX 4090" class="card-img">
-          <span class="card-chip">RTX 4090</span>
-        </div>
-        <div class="card-body">
-          <p class="card-name">Workstation RTX 4090</p>
-          <p class="card-specs">Ryzen 9 7950X · 64 GB RAM · 2 TB NVMe<br>RTX 4090 24 GB</p>
-          <div class="card-footer">
-            <p class="card-price">R$ 2.490<span>/mês</span></p>
-            <div class="card-actions">
-              <a href="pages/products.html" class="btn-detalhes">Detalhes</a>
-              <button class="btn-alugar">Alugar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mac Mini M4 Pro -->
-      <div class="product-card reveal">
-        <div class="card-image">
-          <img src="assets/images/Mac Mini M4 Pro/img1.png" alt="Mac Mini M4 Pro" class="card-img">
-          <span class="card-chip">M4 Pro</span>
-        </div>
-        <div class="card-body">
-          <p class="card-name">Mac Mini M4 Pro</p>
-          <p class="card-specs">M4 Pro · 24 GB RAM · 512 GB SSD<br>Thunderbolt 5</p>
-          <div class="card-footer">
-            <p class="card-price">R$ 490<span>/mês</span></p>
-            <div class="card-actions">
-              <a href="pages/products.html" class="btn-detalhes">Detalhes</a>
-              <button class="btn-alugar">Alugar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <div class="carousel-track" id="homeProductsGrid"></div>
   </section>
 
 
@@ -171,15 +74,18 @@
     <div class="why-grid">
       <div class="why-card reveal">
         <p class="why-card-title">Pronto para uso</p>
-        <p class="why-card-body">Equipamentos configurados e entregues em até 24h. Sem setup, sem espera na fila de TI.</p>
+        <p class="why-card-body">Equipamentos configurados e entregues em até 24h. Sem setup, sem espera na fila de TI.
+        </p>
       </div>
       <div class="why-card reveal">
         <p class="why-card-title">Troca sem burocracia</p>
-        <p class="why-card-body">Precisa de mais poder? Troque de modelo a qualquer momento, sem multas e sem perda de dados.</p>
+        <p class="why-card-body">Precisa de mais poder? Troque de modelo a qualquer momento, sem multas e sem perda de
+          dados.</p>
       </div>
       <div class="why-card reveal">
         <p class="why-card-title">Assinatura flexível</p>
-        <p class="why-card-body">Pague mês a mês ou feche contratos anuais com desconto. Escale conforme o time cresce.</p>
+        <p class="why-card-body">Pague mês a mês ou feche contratos anuais com desconto. Escale conforme o time cresce.
+        </p>
       </div>
       <div class="why-card reveal">
         <p class="why-card-title">Suporte técnico incluso</p>
@@ -193,21 +99,24 @@
     <h2 class="section-title reveal">O que dizem nossos clientes</h2>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal">
-        <p class="testimonial-text">"Reduzimos o tempo de onboarding de dois dias para duas horas. O equipamento já chega configurado e pronto para o ambiente de dev."</p>
+        <p class="testimonial-text">"Reduzimos o tempo de onboarding de dois dias para duas horas. O equipamento já
+          chega configurado e pronto para o ambiente de dev."</p>
         <div class="testimonial-author">
           <p class="author-name">Lucas Ferreira</p>
           <p class="author-meta">Engineering Manager · Nubank</p>
         </div>
       </div>
       <div class="testimonial-card reveal">
-        <p class="testimonial-text">"Contratamos três MacBooks para um projeto de três meses. No fim do contrato, devolvemos e escalamos sem nenhuma dor de cabeça."</p>
+        <p class="testimonial-text">"Contratamos três MacBooks para um projeto de três meses. No fim do contrato,
+          devolvemos e escalamos sem nenhuma dor de cabeça."</p>
         <div class="testimonial-author">
           <p class="author-name">Ana Castilho</p>
           <p class="author-meta">CTO · Finbits</p>
         </div>
       </div>
       <div class="testimonial-card reveal">
-        <p class="testimonial-text">"Custo previsível, hardware de ponta e suporte que realmente responde. Não voltamos mais para comprar equipamento próprio."</p>
+        <p class="testimonial-text">"Custo previsível, hardware de ponta e suporte que realmente responde. Não voltamos
+          mais para comprar equipamento próprio."</p>
         <div class="testimonial-author">
           <p class="author-name">Rafael Duarte</p>
           <p class="author-meta">Lead Developer · Olist</p>
@@ -234,29 +143,10 @@
     </div>
   </footer>
 
-
-  <script src="js/cart.js"></script>
+  <script src="../js/cart.js"></script>
   <script src="js/session.js"></script>
-  <script>
-    function moverCarrossel(direcao) {
-      var carrossel = document.getElementById("carousel-track");
-      carrossel.scrollLeft += direcao * 300;
-    }
-
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    });
-
-    document.querySelectorAll(".reveal").forEach(function(el) {
-      observer.observe(el);
-    });
-  </script>
+  <script src="js/home.js"></script>
 
 </body>
 
 </html>
-1

@@ -1,9 +1,14 @@
 // ───────────────────────────────────────────
-// CATÁLOGO DE PRODUTOS
-// Cada objeto representa um equipamento disponível
+// CATÁLOGO DE PRODUTOS VIA BACKEND SPRING
+// Os produtos agora vêm da API: http://localhost:8080/produtos
 // ───────────────────────────────────────────
 
-const products = window.products;
+let products = [];
+
+const API_URL = 'http://localhost:8080/produtos';
+
+
+// ── RENDERIZAÇÃO DOS PRODUTOS ─────────────────────────────────
 
 const renderProducts = () => {
 
@@ -103,24 +108,29 @@ const renderProducts = () => {
 
 
 // ── SCROLL REVEAL ─────────────────────────────────────────────
-// Quando um card entra na tela, adiciona a classe .visible
-// Isso faz o card aparecer suavemente (opacity 0 → 1, translateY)
 
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-            // Delay escalonado: cada card aparece 80ms depois do anterior
             setTimeout(() => {
                 entry.target.classList.add('visible');
             }, i * 80);
-            revealObserver.unobserve(entry.target); // para de observar depois de revelar
+
+            revealObserver.unobserve(entry.target);
         }
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.product-card.reveal').forEach(card => {
-    revealObserver.observe(card);
-});
+
+const observeProductCards = () => {
+
+    document
+        .querySelectorAll('.product-card.reveal')
+        .forEach(card => {
+            revealObserver.observe(card);
+        });
+
+};
 
 
 // ── FILTROS ────────────────────────────────────────────────────
@@ -177,14 +187,11 @@ searchInput.addEventListener('input', () => {
 
     getCards().forEach(card => {
 
-        const text =
-            card.innerText.toLowerCase();
+        const text = card.innerText.toLowerCase();
 
-        const match =
-            text.includes(query);
+        const match = text.includes(query);
 
-        card.style.display =
-            match ? '' : 'none';
+        card.style.display = match ? '' : 'none';
 
     });
 
@@ -197,8 +204,7 @@ searchInput.addEventListener('input', () => {
 
 // ── CONTADOR DE RESULTADOS ─────────────────────────────────────
 
-const resultsCount =
-    document.getElementById('resultsCount');
+const resultsCount = document.getElementById('resultsCount');
 
 const updateResultsCount = () => {
 
@@ -218,13 +224,11 @@ const updateResultsCount = () => {
 
 const checkEmpty = () => {
 
-    const emptyState =
-        document.getElementById('emptyState');
+    const emptyState = document.getElementById('emptyState');
 
-    const visibleCards =
-        [...getCards()]
-            .filter(card =>
-                card.style.display !== 'none');
+    const visibleCards = [...getCards()].filter(card => {
+        return window.getComputedStyle(card).display !== 'none';
+    });
 
     if (emptyState) {
 
@@ -240,14 +244,41 @@ const checkEmpty = () => {
 };
 
 
+// ── CARREGAR PRODUTOS DO BACKEND ───────────────────────────────
+
+const loadProductsFromBackend = async () => {
+
+    const productsGrid = document.getElementById('productsGrid');
+
+    try {
+
+        const response = await fetch(API_URL);
+
+        products = await response.json();
+
+        renderProducts();
+
+        observeProductCards();
+
+        updateResultsCount();
+
+    } catch (error) {
+
+        console.error('Erro ao carregar produtos:', error);
+
+        productsGrid.innerHTML = `
+            <p class="empty-message">
+                Não foi possível carregar os produtos. Verifique se o servidor Spring Boot está rodando.
+            </p>
+        `;
+
+        resultsCount.textContent = '0 equipamentos encontrados';
+
+    }
+
+};
+
+
 // ── INICIALIZAÇÃO ──────────────────────────────────────────────
 
-renderProducts();
-
-document
-    .querySelectorAll('.product-card.reveal')
-    .forEach(card => {
-        revealObserver.observe(card);
-    });
-
-updateResultsCount();
+loadProductsFromBackend();
