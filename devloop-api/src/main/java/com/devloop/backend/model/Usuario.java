@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 public class Usuario {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	
 	private String name;

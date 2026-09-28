@@ -1,63 +1,62 @@
-// usei isso pra pegar o formulario de login
+// usei isso para pegar o formulario de login
 const form = document.getElementById("loginForm");
 
-// fiz isso pra escutar quando o formulario for enviado
-form.addEventListener("submit", function(e){
+// fiz isso para escutar quando o formulario for enviado 
+// (agora a funcao e async por causa do fetch)
+form.addEventListener("submit", async function(e){
 
     // impede a pagina de recarregar quando envia o form
     e.preventDefault();
 
-    // criei uma variavel pra pegar o email digitado
+    // criei uma variavel para pegar o email digitado
     const email = document
         .getElementById("email")
         .value
         .trim()
         .toLowerCase();
 
-    // criei uma variavel pra pegar a senha digitada
+    // criei uma variavel para pegar a senha digitada
     const password = document
         .getElementById("password")
         .value;
 
-    // usei isso pra pegar todos os usuarios cadastrados no localStorage
-    const users = JSON.parse(
-        localStorage.getItem("registeredUsers") || "[]"
-    );
-
-    // fiz isso pra procurar um usuario com esse email e essa senha
-    const user = users.find(u =>
-        u.email === email &&
-        u.password === password
-    );
-
-    // usei isso pra pegar o elemento que mostra a mensagem
+    // elemento para mostrar a mensagem
     const msg = document.getElementById("msg");
 
-    // se achou o usuario faz isso
-    if(user){
+    // usei try/catch para tratar erros de conexao com o back-end
+    try {
+        // usei await fetch para mandar email e senha pro back-end
+        const res = await fetch("http://localhost:8080/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
 
-        // salva o usuario logado no localStorage
-        localStorage.setItem(
-            "loggedUser",
-            JSON.stringify(user)
-        );
+        // se o back recusou (email ou senha errados, ou usuario nao existe...)
+        if(!res.ok){
+            msg.innerHTML = "Email ou senha incorretos.";
+            return;
+        }
+
+        // usei await res.json() para ler a resposta do back
+        const data = await res.json();
+        console.log(data); // console.log para conferir os nomes dos campos
+
+        // salva role e name no localStorage (para usar depois)
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("name", data.name);
 
         // mostra a mensagem de boas vindas
-        msg.innerHTML =
-            `Bem-vindo ${user.firstName}!`;
+        msg.innerHTML = `Bem-vindo ${data.name}!`;
 
-        // fiz isso pra esperar 1 segundo e mandar pra pagina inicial
+        // espera 1 segundo e manda pra pagina inicial
         setTimeout(() => {
-            window.location.href =
-                "../index.html";
+            window.location.href = "../index.html";
         }, 1000);
 
-    }else{
-
-        // se nao achou mostra mensagem de erro
-        msg.innerHTML =
-            "Email ou senha incorretos.";
-
+    } catch (err) {
+        // back-end desligado ou erro de conexao
+        msg.innerHTML = "Não foi possível conectar ao servidor.";
     }
 
 });

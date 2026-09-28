@@ -148,31 +148,8 @@
         if (confirmInput.classList.contains("error")) validateConfirmPassword();
     });
 
-    // funcao para verificar se o email ja existe no localStorage
-    function emailAlreadyExists(email) {
-        // usei isso pra pegar todos os usuarios ja cadastrados
-        const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
-        // devolve true se achar algum usuario com esse email
-        return users.some((u) => u.email === email.toLowerCase());
-    }
-
-    // funcao para salvar um usuario novo no localStorage
-    function saveUser(data) {
-        // pega os usuarios que ja existem
-        const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
-        // adiciona o novo usuario no array
-        users.push({
-    firstName: data.firstName,
-    email: data.email.toLowerCase(),
-    password: data.password,
-    createdAt: new Date().toISOString(),
-});
-        // salva o array atualizado de volta no localStorage
-        localStorage.setItem("registeredUsers", JSON.stringify(users));
-    }
-
     // fiz isso pra escutar o envio do formulario de cadastro
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", async function (e) {
         // impede a pagina de recarregar ao enviar
         e.preventDefault();
 
@@ -196,44 +173,54 @@
             return;
         }
 
-        // se o email ja existe mostra erro no campo e para
-        if (emailAlreadyExists(emailInput.value.trim())) {
-            setFieldValidity(emailInput, "emailError", false);
-            document.getElementById("emailError").textContent = "Este e-mail já está cadastrado.";
-            document.getElementById("emailError").classList.add("visible");
-            showToast("E-mail já cadastrado. Tente fazer login.", "error");
-            return;
-        }
-
-        // Simula um breve delay de rede
         // desabilita o botao pra nao clicar duas vezes
         submitBtn.disabled = true;
-        // troca o texto do botao enquanto "cria" a conta
-        submitBtn.textContent = "Criando conta…";
 
-        // usei isso pra simular um tempo de espera antes de salvar
-        setTimeout(() => {
-            // chama a funcao que salva o usuario com os dados do form
-            saveUser({
-            firstName: firstNameInput.value.trim(),
-            email: emailInput.value.trim(),
-            password: passwordInput.value
-});
+        // criei uma variavel para guardar o nome antes 
+        // porque o form.reset() apaga os campos
+        const nome = firstNameInput.value.trim();
 
-            // mostra o toast de sucesso com o nome do usuario
-            showToast(`Bem-vindo, ${firstNameInput.value.trim()}! Conta criada com sucesso.`, "success");
-            // limpa o formulario depois de salvar
-            form.reset();
+        try {
+            // usei fetch para mandar os dados pro back-end
+            const res = await fetch("http://localhost:8080/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: nome,
+                    email: emailInput.value.trim().toLowerCase(),
+                    password: passwordInput.value
+                })
+            });
+
+            if (res.ok) {
+                // mostra o toast de sucesso com o nome do usuario
+                showToast(`Bem-vindo, ${nome}! Conta criada com sucesso.`, "success");
+                // limpa o formulario depois de salvar
+                form.reset();
+
+                // manda pra tela de login depois de 1,5 segundos
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1500);
+            } else {
+                 // usei await res.json() para ler a mensagem de erro que o back mandou
+                 // mas de modo que nao quebre se nao vier json (ex: back desligado)
+                const erro = await res.json().catch(() => null);
+                console.log(erro); // o erro deve aparecer no console
+
+                // se o back recusou (ex: email ja cadastrado)
+                setFieldValidity(emailInput, "emailError", false);
+                document.getElementById("emailError").textContent = "Não foi possível cadastrar. Este e-mail pode já estar cadastrado.";
+                showToast("Não foi possível criar a conta.", "error");
+            }
+        } catch (err) {
+            // back-end desligado ou erro de conexao
+            showToast("Não foi possível conectar ao servidor.", "error");
+        } finally {
             // libera o botao de novo
             submitBtn.disabled = false;
-            // volta o texto original do botao
             submitBtn.textContent = "Criar conta";
-
-            // fiz isso pra mandar pra tela de login depois de um tempinho
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 1500);
-        }, 900);
+        }
     });
 
 })();
