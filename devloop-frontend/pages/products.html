@@ -39,7 +39,8 @@
                 <a href="about.html">Sobre Nós</a>
             </div>
 
-            <div class="auth-links">
+            <!-- usuário não logado -->
+            <div class="auth-links" id="auth-guest">
                 <a href="cart.html" class="cart-link" aria-label="Carrinho">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
@@ -51,6 +52,22 @@
                 </a>
                 <a href="register.html" class="btn-signup">Cadastrar</a>
                 <a href="login.html" class="btn-login">Entrar</a>
+            </div>
+
+            <!-- usuário logado -->
+            <div class="auth-links" id="auth-user" style="display: none;">
+                <a href="pages/cart.html" class="cart-link" aria-label="Carrinho">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
+                            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
+                        <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
+                    </svg>
+                    <span id="navCartBadge2" class="cart-badge" hidden>0</span>
+                </a>
+                <a href="../admin.html" id="admin-link" class="btn-signup" style="display: none;">Admin</a>
+                <span id="user-name" class="btn-signup"></span>
+                <button id="logout-btn" class="btn-login">Sair</button>
             </div>
 
             <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
@@ -185,6 +202,7 @@
     <script src="../js/products.js"></script>
     <script src="../js/cart.js"></script>
     <script src="../js/session.js"></script>
+    <script src="../js/navbar.js"></script>
 
 </body>
 

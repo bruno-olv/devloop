@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevLoop | About us</title>
-    <link rel="stylesheet" href="../css/base.css">
-    <link rel="stylesheet" href="../css/about.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevLoop | Hardware as a Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
 </head>
 
 <body>
+
+    <!-- Glow de fundo -->
     <div class="glow-wrap">
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
@@ -25,23 +25,25 @@
 
     <div class="nav-backdrop" id="navBackdrop"></div>
 
+    <!-- Header -->
     <header>
         <nav>
             <div class="logo">
-                <a href="../index.html">Dev<em>Loop</em></a>
-                <span class="logo-tag">For Developers</span>
+                <a href="index.html">Dev<em>Loop</em></a>
+                <span class="logo-tag">for developers</span>
             </div>
+
             <div class="menu-links">
-                <a href="../index.html">Home</a>
-                <a href="products.html">Produtos</a>
-                <a href="about.html" class="active">Sobre Nós</a>
+                <a href="index.html" class="active">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
             </div>
 
             <!-- usuário não logado -->
             <div class="auth-links" id="auth-guest">
                 <a href="cart.html" class="cart-link" aria-label="Carrinho">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" 
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
                             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                         <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
                         <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
@@ -63,7 +65,7 @@
                     </svg>
                     <span id="navCartBadge2" class="cart-badge" hidden>0</span>
                 </a>
-                <a href="../admin.html" id="admin-link" class="btn-signup" style="display: none;">Admin</a>
+                <a href="admin.html" id="admin-link" class="btn-signup" style="display: none;">Admin</a>
                 <span id="user-name" class="btn-signup"></span>
                 <button id="logout-btn" class="btn-login">Sair</button>
             </div>
@@ -79,49 +81,8 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Sobre Nós</h1>
-        <p class="hero-subtitle">
-            Conheça nossa história, quem somos e como trabalhamos.</p>
-
-        <div class="about-content">
-            <div class="about-card">
-                <h3>Nossa História</h3>
-                <p>A DevLoop nasceu da iniciativa de empreendedores que identificaram a dificuldade
-                    de programadores, designers e estudantes de tecnologia em acessar hardware de
-                    alta performance a preços competitivos no Brasil.</p>
-                <p>Inicialmente, a operação baseava-se na importação de lotes selecionados e na
-                    revenda direta. Com o crescimento da empresa, foi firmada uma parceria estratégica
-                    com uma grande seguradora de eletrônicos.</p>
-                <p>Essa aliança permitiu expandir o modelo de negócio para a locação de notebooks
-                    premium com seguro total incluso, protegendo os clientes contra roubos, furtos
-                    e danos.</p>
-                <p>Com o aumento da demanda, tornou-se necessária a criação de uma plataforma web
-                    própria para automatizar o atendimento, o catálogo e o gerenciamento dos pedidos.</p>
-            </div>
-
-            <div class="about-card">
-                <h3>Como funcionamos</h3>
-                <p>A DevLoop oferece notebooks de alto desempenho para locação e aluguel, atendendo tanto clientes
-                    corporativos quanto usuários individuais.</p>
-                <p>Nossa plataforma permite consultar especificações técnicas, verificar disponibilidade dos
-                    equipamentos e simular pedidos de forma rápida e intuitiva.</p>
-                <p>Além disso, trabalhamos com proteção e suporte especializados para garantir uma experiência segura
-                    durante toda a utilização dos equipamentos.</p>
-            </div>
-
-            <div class="about-card">
-                <h3>Equipe e Colaboradores</h3>
-                <p>Nossa equipe é formada por desenvolvedores, designers e profissionais de tecnologia comprometidos em
-                    criar soluções eficientes para os desafios do mercado.</p>
-                <p>Trabalhamos de forma colaborativa, unindo conhecimento técnico e foco na experiência do usuário para
-                    entregar uma plataforma moderna, confiável e escalável.</p>
-                <p>Cada integrante contribui para a evolução contínua da DevLoop, buscando inovação e excelência em cada
-                    etapa do projeto.</p>
-            </div>
-
-        </div>
-    </section>
+    <!-- Conteúdo da página -->
+    
 
     <!--- FOOTER -->
     <footer class="footer">
@@ -133,9 +94,9 @@
             </div>
 
             <div class="footer-links">
-                <a href="../index.html">Home</a>
-                <a href="products.html">Produtos</a>
-                <a href="about.html">Sobre Nós</a>
+                <a href="index.html">Home</a>
+                <a href="pages/products.html">Produtos</a>
+                <a href="pages/about.html">Sobre Nós</a>
             </div>
 
         </div>
@@ -143,10 +104,7 @@
         <div class="footer-bottom">
             © 2026 DevLoop. Todos os direitos reservados.
         </div>
-
     </footer>
-
-    <div class="glow"></div>
 
     <script>
         (function () {
@@ -181,9 +139,11 @@
             });
         })();
     </script>
-    <script src="../js/cart.js"></script>
-    <script src="../js/session.js"></script>
-    <script src="../js/navbar.js"></script>
+
+    <script src="js/cart.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/navbar.js"></script>
+
 </body>
 
 </html>
