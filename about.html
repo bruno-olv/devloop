@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevLoop | About us</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/about.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="glow-wrap">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <div class="nav-backdrop" id="navBackdrop"></div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="../index.html">Dev<em>Loop</em></a>
+                <span class="logo-tag">For Developers</span>
+            </div>
+            <div class="menu-links">
+                <a href="../index.html">Home</a>
+                <a href="products.html">Produtos</a>
+                <a href="about.html" class="active">Sobre Nós</a>
+                <a href="admin.html">Admin</a>
+            </div>
+            <div class="auth-links">
+                <a href="cart.html" class="cart-link" aria-label="Carrinho">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                        <circle cx="9.5" cy="20" r="1.4" fill="currentColor" />
+                        <circle cx="17.5" cy="20" r="1.4" fill="currentColor" />
+                    </svg>
+                    <span id="navCartBadge" class="cart-badge" hidden>0</span>
+                </a>
+                <a href="register.html" class="btn-signup">Cadastrar</a>
+                <a href="login.html" class="btn-login">Entrar</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+                <svg class="icon-menu" width="18" height="12" viewBox="0 0 18 12" fill="none">
+                    <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                <svg class="icon-close" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none">
+                    <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Sobre Nós</h1>
+        <p class="hero-subtitle">
+            Conheça nossa história, quem somos e como trabalhamos.</p>
+
+        <div class="about-content">
+            <div class="about-card">
+                <h3>Nossa História</h3>
+                <p>A DevLoop nasceu da iniciativa de empreendedores que identificaram a dificuldade
+                    de programadores, designers e estudantes de tecnologia em acessar hardware de
+                    alta performance a preços competitivos no Brasil.</p>
+                <p>Inicialmente, a operação baseava-se na importação de lotes selecionados e na
+                    revenda direta. Com o crescimento da empresa, foi firmada uma parceria estratégica
+                    com uma grande seguradora de eletrônicos.</p>
+                <p>Essa aliança permitiu expandir o modelo de negócio para a locação de notebooks
+                    premium com seguro total incluso, protegendo os clientes contra roubos, furtos
+                    e danos.</p>
+                <p>Com o aumento da demanda, tornou-se necessária a criação de uma plataforma web
+                    própria para automatizar o atendimento, o catálogo e o gerenciamento dos pedidos.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>Como funcionamos</h3>
+                <p>A DevLoop oferece notebooks de alto desempenho para locação e aluguel, atendendo tanto clientes
+                    corporativos quanto usuários individuais.</p>
+                <p>Nossa plataforma permite consultar especificações técnicas, verificar disponibilidade dos
+                    equipamentos e simular pedidos de forma rápida e intuitiva.</p>
+                <p>Além disso, trabalhamos com proteção e suporte especializados para garantir uma experiência segura
+                    durante toda a utilização dos equipamentos.</p>
+            </div>
+
+            <div class="about-card">
+                <h3>Equipe e Colaboradores</h3>
+                <p>Nossa equipe é formada por desenvolvedores, designers e profissionais de tecnologia comprometidos em
+                    criar soluções eficientes para os desafios do mercado.</p>
+                <p>Trabalhamos de forma colaborativa, unindo conhecimento técnico e foco na experiência do usuário para
+                    entregar uma plataforma moderna, confiável e escalável.</p>
+                <p>Cada integrante contribui para a evolução contínua da DevLoop, buscando inovação e excelência em cada
+                    etapa do projeto.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!--- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <h3>Dev<em>Loop</em></h3>
+                <p>Hardware de alta performance para desenvolvedores, estudantes e equipes de tecnologia.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="products.html">Produtos</a>
+                <a href="about.html">Sobre Nós</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 DevLoop. Todos os direitos reservados.
+        </div>
+
+    </footer>
+
+    <div class="glow"></div>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('navToggle');
+            var menu = document.querySelector('.menu-links');
+            var backdrop = document.getElementById('navBackdrop');
+            if (!btn || !menu) return;
+            function openMenu() {
+                menu.classList.add('open');
+                if (backdrop) backdrop.classList.add('open');
+                document.body.classList.add('menu-open');
+                btn.querySelector('.icon-menu').style.display = 'none';
+                btn.querySelector('.icon-close').style.display = '';
+                btn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                menu.classList.remove('open');
+                if (backdrop) backdrop.classList.remove('open');
+                document.body.classList.remove('menu-open');
+                btn.querySelector('.icon-menu').style.display = '';
+                btn.querySelector('.icon-close').style.display = 'none';
+                btn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+            btn.addEventListener('click', function () {
+                menu.classList.contains('open') ? closeMenu() : openMenu();
+            });
+            if (backdrop) backdrop.addEventListener('click', closeMenu);
+            menu.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', closeMenu);
+            });
+        })();
+    </script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/session.js"></script>
+</body>
+
+</html>
