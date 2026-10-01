@@ -55,7 +55,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "14\"",
                 "macOS Sequoia",
                 "14\" Liquid Retina XDR",
-                "Thunderbolt 5, HDMI e Wi-Fi 6E"
+                "Thunderbolt 5, HDMI e Wi-Fi 6E",
+                10
         ));
 
         dao.save(new Produto(
@@ -76,7 +77,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "14\"",
                 "Windows 11 Pro",
                 "14\" OLED profissional",
-                "USB-C, Thunderbolt 4, HDMI e Wi-Fi 6E"
+                "USB-C, Thunderbolt 4, HDMI e Wi-Fi 6E",
+                12
         ));
 
         dao.save(new Produto(
@@ -97,7 +99,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "15\"",
                 "Windows 11 Pro",
                 "15\" InfinityEdge de alta resolução",
-                "USB-C, Thunderbolt 4 e Wi-Fi 6E"
+                "USB-C, Thunderbolt 4 e Wi-Fi 6E",
+                8
         ));
 
         dao.save(new Produto(
@@ -118,7 +121,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "16\"",
                 "Windows 11 Pro",
                 "16\" AMOLED de alta resolução",
-                "USB-C, HDMI e Wi-Fi 6E"
+                "USB-C, HDMI e Wi-Fi 6E",
+                15
         ));
 
         dao.save(new Produto(
@@ -139,7 +143,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "16\"",
                 "Windows 11 Pro",
                 "16\" OLED de alta performance",
-                "USB-C, HDMI e Wi-Fi 6E"
+                "USB-C, HDMI e Wi-Fi 6E",
+                6
         ));
 
         dao.save(new Produto(
@@ -160,7 +165,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "14\"",
                 "Windows 11 Pro",
                 "14\" IPS profissional",
-                "USB-C, HDMI e Wi-Fi 6E"
+                "USB-C, HDMI e Wi-Fi 6E",
+                10
         ));
 
         dao.save(new Produto(
@@ -181,7 +187,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "Sem tela",
                 "macOS Sequoia",
                 "Não acompanha tela",
-                "Thunderbolt 5, HDMI, Ethernet e Wi-Fi 6E"
+                "Thunderbolt 5, HDMI, Ethernet e Wi-Fi 6E",
+                15
         ));
 
         dao.save(new Produto(
@@ -202,7 +209,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "16\"",
                 "Windows 11 Pro",
                 "16\" OLED profissional",
-                "USB-C, Thunderbolt 4, HDMI e Wi-Fi 6E"
+                "USB-C, Thunderbolt 4, HDMI e Wi-Fi 6E",
+                11
         ));
 
         dao.save(new Produto(
@@ -223,7 +231,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "16\"",
                 "Windows 11 Pro",
                 "16\" IPS profissional",
-                "USB-C, HDMI e Wi-Fi 6E"
+                "USB-C, HDMI e Wi-Fi 6E",
+                10
         ));
 
         dao.save(new Produto(
@@ -244,7 +253,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "16\"",
                 "Windows 11 Pro",
                 "16\" OLED profissional",
-                "USB-C, HDMI e Wi-Fi 6E"
+                "USB-C, HDMI e Wi-Fi 6E",
+                7
         ));
 
         dao.save(new Produto(
@@ -265,7 +275,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "Sem tela",
                 "Windows 11 Pro",
                 "Não acompanha tela",
-                "USB-C, HDMI, Ethernet e Wi-Fi"
+                "USB-C, HDMI, Ethernet e Wi-Fi",
+                5
         ));
 
         dao.save(new Produto(
@@ -286,7 +297,8 @@ public class ProdutoLoader implements CommandLineRunner {
                 "Sem tela",
                 "macOS Sequoia",
                 "Não acompanha tela",
-                "Thunderbolt, HDMI, Ethernet e Wi-Fi 6E"
+                "Thunderbolt, HDMI, Ethernet e Wi-Fi 6E",
+                7
 		));
 	}
 }

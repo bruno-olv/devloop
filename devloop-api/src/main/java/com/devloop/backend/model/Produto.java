@@ -37,6 +37,7 @@ public class Produto {
     public String fullDescription;
 
     public Integer price;
+    public Integer quantidadeEstoque;
 
     public String imageMain;
     public String imageHover;
@@ -67,7 +68,8 @@ public class Produto {
             String display,
             String os,
             String displayDetail,
-            String connectivity
+            String connectivity,
+            Integer quantidadeEstoque
     ) {
         this.id = id;
         this.name = name;
@@ -87,5 +89,6 @@ public class Produto {
         this.os = os;
         this.displayDetail = displayDetail;
         this.connectivity = connectivity;
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 }
