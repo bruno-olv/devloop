@@ -42,9 +42,10 @@ form.addEventListener("submit", async function(e){
         const data = await res.json();
         console.log(data); // console.log para conferir os nomes dos campos
 
-        // salva role e name no localStorage (para usar depois)
+        // salva role, name e id no localStorage (para usar depois)
         localStorage.setItem("role", data.role);
         localStorage.setItem("name", data.name);
+        localStorage.setItem("id", data.id);
 
         // mostra a mensagem de boas vindas
         msg.innerHTML = `Bem-vindo ${data.name}!`;

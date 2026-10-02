@@ -155,11 +155,50 @@ function configurarFormularioCartao() {
     });
 }
 
-function finalizarPagamento(mensagem) {
-    document.getElementById("checkoutLayout").hidden = true;
-    document.getElementById("sucessoMsg").textContent = mensagem;
-    document.getElementById("sucessoPagamento").hidden = false;
+async function finalizarPagamento(mensagem) {
+    const carrinho = getCart();
+    const usuarioId = localStorage.getItem("id");
 
-    saveCart([]); // esvazia o carrinho
-    if (window.updateNavCartBadge) window.updateNavCartBadge(); // atualiza o badge do menu
+    const pedido = {
+        usuario: { id: usuarioId },
+        itens: carrinho.map(item => ({
+            produto: { id: item.id },
+            quantidade: item.quantity
+        }))
+    };
+
+    try {
+        const res = await fetch("http://localhost:8080/pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(pedido)
+        });
+
+        if (!res.ok) {
+            const erro = await res.text().catch(() => "Erro desconhecido");
+            console.log(erro);
+
+            const erroEl = document.getElementById("erroCartao");
+            if (erroEl) erroEl.textContent = "Não foi possível finalizar o pedido. Tente novamente.";
+
+            const botao = document.querySelector(".btn-pagar:disabled");
+            if (botao) {
+                botao.disabled = false;
+                botao.textContent = botao.id === "btnConfirmarPix" ? "Já paguei" : "Pagar";
+            }
+            return;
+        }
+
+        document.getElementById("checkoutLayout").hidden = true;
+        document.getElementById("sucessoMsg").textContent = mensagem;
+        document.getElementById("sucessoPagamento").hidden = false;
+
+        saveCart([]); // esvazia o carrinho
+        if (window.updateNavCartBadge) window.updateNavCartBadge(); // atualiza o badge do menu
+
+    } catch (err) {
+        console.log(err);
+        const erroEl = document.getElementById("erroCartao");
+        if (erroEl) erroEl.textContent = "Não foi possível conectar ao servidor.";
+    }
 }

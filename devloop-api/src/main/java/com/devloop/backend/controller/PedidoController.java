@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devloop.backend.model.Pedido;
 import com.devloop.backend.repository.PedidoDAO;
 import com.devloop.backend.repository.ProdutoDAO;
+import com.devloop.backend.repository.UsuarioDAO;
 
 @RestController
 @RequestMapping("pedidos")
@@ -21,9 +22,14 @@ public class PedidoController {
 
     @Autowired
     private ProdutoDAO produtoDAO;
+    
+    @Autowired
+    private UsuarioDAO usuarioDAO;
 
     @PostMapping
     public Pedido inserir(@RequestBody Pedido pedido){
+    	
+    	int totalCalculado = 0;
 
         for (var item : pedido.getItens()) {
             var produto = produtoDAO.findById(item.getProduto().getId());
@@ -41,9 +47,21 @@ public class PedidoController {
             produtoBanco.quantidadeEstoque -= item.getQuantidade();
 
             produtoDAO.save(produtoBanco);
+            
+            item.setPedido(pedido); 
+            
+            totalCalculado += produtoBanco.price * item.getQuantidade();
 
         }
-
+        
+        pedido.setTotal(totalCalculado);
+        
+        if (pedido.getUsuario() != null && pedido.getUsuario().getId() != null) {
+            var usuario = usuarioDAO.findById(pedido.getUsuario().getId());
+            if (usuario.isPresent()) {
+                pedido.setUsuario(usuario.get());
+            }
+        }
 
     return dao.save(pedido);
 
