@@ -14,11 +14,12 @@
     }
 
     function updateNavCartBadge() {
-        var badge = document.getElementById('navCartBadge');
-        if (!badge) return;
-        var count = getCartCount();
-        badge.textContent = count > 99 ? '99+' : count;
-        badge.hidden = count === 0;
+      var badges = document.querySelectorAll('.cart-badge');
+      var count = getCartCount();
+      badges.forEach(function (badge) {
+          badge.textContent = count > 99 ? '99+' : count;
+          badge.hidden = count === 0;
+      });
     }
 
     document.addEventListener('DOMContentLoaded', updateNavCartBadge);
