@@ -1,14 +1,12 @@
-# 1. Imagem base do Java (JDK 17)
-FROM eclipse-temurin:17-jdk-alpine
-
-# 2. Pasta de trabalho dentro do contêiner
+# 1ª Etapa: Compila o projeto com Maven e Java 17
+FROM maven:3.9-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# 3. Copia o arquivo .jar gerado pela compilação para dentro do contêiner
-COPY target/*.jar app.jar
-
-# 4. Porta que a aplicação Spring Boot expõe
+# 2ª Etapa: Cria a imagem final leve para rodar a API
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-
-# 5. Comando para executar a aplicação quando o contêiner subir
 ENTRYPOINT ["java", "-jar", "app.jar"]

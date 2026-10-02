@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  # Serviço 1: Banco de dados PostgreSQL
+  # Banco de Dados
   db:
-    image: postgres:15-alpine
+    image: postgres:15
     container_name: devloop-db
     environment:
       POSTGRES_DB: devloop
@@ -11,21 +11,23 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
-  # Serviço 2: Nossa aplicação feita no Spring Boot
+  # Backend (Spring Boot API)
   backend:
     build: .
-    container_name: devloop-backend
+    container_name: devloop-api
     ports:
       - "8080:8080"
     depends_on:
       - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/devloop
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
 
-volumes:
-  postgres_data:
+  # Frontend (Nginx servindo HTML/CSS/JS)
+  frontend:
+    image: nginx:alpine
+    container_name: devloop-frontend
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - backend

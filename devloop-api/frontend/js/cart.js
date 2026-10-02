@@ -81,6 +81,9 @@ function renderCart() {
   const resumo = document.getElementById('resumo')
   const badge = document.getElementById('badge-inline')
 
+  // Se a página não tiver a tabela do carrinho (ex: admin.html), interrompe a execução sem dar erro
+  if (!tableBody) return;
+
   tableBody.innerHTML = ''
 
   cart.forEach((product, index) => {
