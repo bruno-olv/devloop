@@ -10,8 +10,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
 
 <body>
@@ -29,14 +29,14 @@
     <header>
         <nav>
             <div class="logo">
-                <a href="index.html">Dev<em>Loop</em></a>
+                <a href="../index.html">Dev<em>Loop</em></a>
                 <span class="logo-tag">for developers</span>
             </div>
 
             <div class="menu-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="pages/products.html">Produtos</a>
-                <a href="pages/about.html">Sobre Nós</a>
+                <a href="../index.html">Home</a>
+                <a href="products.html">Produtos</a>
+                <a href="about.html">Sobre Nós</a>
             </div>
 
             <!-- usuário não logado -->
@@ -56,7 +56,7 @@
 
             <!-- usuário logado -->
             <div class="auth-links" id="auth-user" style="display: none;">
-                <a href="pages/cart.html" class="cart-link" aria-label="Carrinho">
+                <a href="cart.html" class="cart-link" aria-label="Carrinho">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6" stroke="currentColor"
                             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
@@ -81,40 +81,151 @@
         </nav>
     </header>
 
-    <!-- Conteúdo da página -->
-     <h1>Painel Adminstrativo</h1>
-   
-
-        <div class="filter-row">
-            <button class="filter-btn active" data-filter="all">Todos</button>
-            <button class="filter-btn" data-filter="apple">Apple</button>
-            <button class="filter-btn" data-filter="thinkpad">ThinkPad</button>
-            <button class="filter-btn" data-filter="performance">Performance</button>
-            <button class="filter-btn" data-filter="workstation">Workstation</button>
+    <main class="admin-content">
+        <div class="admin-heading">
+            <div>
+                <p class="admin-eyebrow">Administração</p>
+                <h1>Painel administrativo</h1>
+                <p class="admin-subtitle">Gerencie os equipamentos, preços e estoque da DevLoop.</p>
+            </div>
+            <button type="button" class="admin-button primary" id="novoProduto">+ Novo produto</button>
         </div>
 
-        <div class="hero-stats">
-            <div>
-                <strong>500+</strong>
-                <span>Equipamentos alugados</span>
-            </div>
+        <p id="mensagem" class="admin-message" role="status" aria-live="polite" hidden></p>
 
-            <div>
-                <strong>98%</strong>
-                <span>Satisfação dos clientes</span>
-            </div>
+        <section class="admin-panel" id="formSection" aria-labelledby="formTitulo" hidden>
+            <h2 id="formTitulo">Cadastrar produto</h2>
+            <form id="produtoForm">
+                <fieldset id="produtoCampos">
+                    <legend class="sr-only">Dados do produto</legend>
+                    <div class="admin-form-grid">
+                        <div class="admin-field">
+                            <label for="produtoId">Identificador</label>
+                            <input id="produtoId" name="id" required maxlength="255" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="notebook-teste" aria-describedby="idAjuda">
+                            <small id="idAjuda">Use letras minúsculas, números e hífens. O identificador deve ser único.</small>
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoNome">Nome</label>
+                            <input id="produtoNome" name="name" required maxlength="255" placeholder="Dell XPS 15">
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoMarca">Marca</label>
+                            <input id="produtoMarca" name="brand" required maxlength="255" placeholder="Dell">
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoCategoria">Categoria</label>
+                            <select id="produtoCategoria" name="category" required>
+                                <option value="">Selecione</option>
+                                <option value="apple">Apple</option>
+                                <option value="thinkpad">ThinkPad</option>
+                                <option value="performance">Performance</option>
+                                <option value="workstation">Workstation</option>
+                            </select>
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoPreco">Preço mensal (R$)</label>
+                            <input id="produtoPreco" name="price" type="number" min="0" max="2147483647" step="1" required placeholder="399">
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoEstoque">Quantidade em estoque</label>
+                            <input id="produtoEstoque" name="quantidadeEstoque" type="number" min="0" max="2147483647" step="1" required placeholder="10">
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoRam">Memória RAM</label>
+                            <input id="produtoRam" name="ram" required maxlength="255" placeholder="16GB RAM">
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoStorage">Armazenamento</label>
+                            <input id="produtoStorage" name="storage" required maxlength="255" placeholder="512GB SSD">
+                        </div>
+                        <div class="admin-field full-width">
+                            <label for="produtoCpu">Processador</label>
+                            <input id="produtoCpu" name="cpu" required maxlength="255" placeholder="Intel Core Ultra 7">
+                        </div>
+                        <div class="admin-field full-width">
+                            <label for="produtoDescricao">Descrição</label>
+                            <textarea id="produtoDescricao" name="description" required maxlength="1000" rows="3" placeholder="Descreva o equipamento e seus principais usos."></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoImagem">Imagem principal</label>
+                            <input id="produtoImagem" name="imageMain" required maxlength="255" placeholder="../assets/images/Dell XPS 15/img1.png" aria-describedby="imagemAjuda">
+                            <small id="imagemAjuda">Use uma pasta de imagens do projeto, com o arquivo img1.png.</small>
+                        </div>
+                        <div class="admin-field">
+                            <label for="produtoImagemHover">Segunda imagem (opcional)</label>
+                            <input id="produtoImagemHover" name="imageHover" maxlength="255" placeholder="../assets/images/Dell XPS 15/img2.png">
+                        </div>
+                    </div>
 
-            <div>
-                <strong>24h</strong>
-                <span>Prazo de entrega</span>
-            </div>
-        </div>
-    </section>
+                    <details class="admin-details" id="detalhesExtras">
+                        <summary>Mais informações (opcional)</summary>
+                        <div class="admin-form-grid">
+                            <div class="admin-field">
+                                <label for="produtoChip">Linha do processador</label>
+                                <input id="produtoChip" name="chip" maxlength="255" placeholder="Intel Evo">
+                            </div>
+                            <div class="admin-field">
+                                <label for="produtoBadge">Destaque</label>
+                                <input id="produtoBadge" name="badge" maxlength="255" placeholder="Mais alugado">
+                            </div>
+                            <div class="admin-field">
+                                <label for="produtoTela">Tamanho da tela</label>
+                                <input id="produtoTela" name="display" maxlength="255" placeholder="15 polegadas">
+                            </div>
+                            <div class="admin-field">
+                                <label for="produtoOs">Sistema operacional</label>
+                                <input id="produtoOs" name="os" maxlength="255" placeholder="Windows 11 Pro">
+                            </div>
+                            <div class="admin-field">
+                                <label for="produtoTelaDetalhes">Detalhes da tela</label>
+                                <input id="produtoTelaDetalhes" name="displayDetail" maxlength="255" placeholder="15 polegadas OLED">
+                            </div>
+                            <div class="admin-field">
+                                <label for="produtoConectividade">Conectividade</label>
+                                <input id="produtoConectividade" name="connectivity" maxlength="255" placeholder="USB-C, HDMI e Wi-Fi 6E">
+                            </div>
+                            <div class="admin-field full-width">
+                                <label for="produtoDescricaoCompleta">Descrição completa</label>
+                                <textarea id="produtoDescricaoCompleta" name="fullDescription" maxlength="2000" rows="4" placeholder="Se ficar vazia, será usada a descrição principal."></textarea>
+                            </div>
+                        </div>
+                    </details>
 
-    <p class="results-count" id="resultsCount">
-        12 equipamentos encontrados
-    </p>
-    
+                    <div class="admin-form-actions">
+                        <button type="submit" class="admin-button primary" id="salvarProduto">Salvar produto</button>
+                        <button type="button" class="admin-button" id="cancelarEdicao">Cancelar</button>
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+
+        <section class="admin-panel" aria-labelledby="listaTitulo">
+            <div class="admin-list-heading">
+                <div>
+                    <h2 id="listaTitulo">Produtos cadastrados</h2>
+                    <p id="totalProdutos" class="admin-subtitle" aria-live="polite">Carregando produtos...</p>
+                </div>
+                <button type="button" class="admin-button" id="atualizarProdutos">Atualizar lista</button>
+            </div>
+            <div class="admin-table-wrap" tabindex="0" role="region" aria-label="Lista de produtos">
+                <table class="admin-table">
+                    <caption class="sr-only">Equipamentos disponíveis para administração</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Preço mensal</th>
+                            <th scope="col">Estoque</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaProdutos">
+                        <tr><td colspan="5" class="admin-empty">Carregando produtos...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
     <!--- FOOTER -->
     <footer class="footer">
@@ -126,9 +237,9 @@
             </div>
 
             <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="pages/products.html">Produtos</a>
-                <a href="pages/about.html">Sobre Nós</a>
+                <a href="../index.html">Home</a>
+                <a href="products.html">Produtos</a>
+                <a href="about.html">Sobre Nós</a>
             </div>
 
         </div>
@@ -172,9 +283,9 @@
         })();
     </script>
 
-    <script src="js/cart.js"></script>
-    <script src="js/session.js"></script>
-    <script src="js/navbar.js"></script>
+    <script src="../js/cart.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/admin.js"></script>
 
 </body>
 
