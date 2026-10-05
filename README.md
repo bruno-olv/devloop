@@ -1,41 +1,177 @@
 # DevLoop
 
-Projeto acadêmico de Front-end e Desenvolvimento Dinâmico.
+Sistema de locação de equipamentos de alta performance voltado para desenvolvedores, estudantes, profissionais de tecnologia e empresas.
 
-## Como executar o backend
+A plataforma permite navegar por um catálogo de notebooks, workstations e computadores premium, visualizar especificações técnicas, realizar autenticação de usuários, gerenciar pedidos e administrar produtos através de um painel administrativo.
 
-1. Abrir a pasta `devloop-api` no Spring Tools Suite.
-2. Executar o projeto como Spring Boot App.
-3. A API ficará disponível em:
+---
 
-http://localhost:8080/produtos
+## Arquitetura & Stack Tecnológica
 
-## Como executar o front-end
+![Stack](./screenshots/stack.png)
 
-1. Abrir a pasta `devloop` no Visual Studio Code.
-2. Executar o `devloop-api/frontend/index.html` com Live Server.
-3. Usar o endereço aberto pelo Live Server no navegador.
+---
 
-## Painel administrativo
+## Tecnologias Utilizadas
 
-1. Com o backend rodando, entrar pela página de login com `admin@devloop.com` e senha `admin123`.
-2. Clicar em **Admin** no menu para acessar `devloop-api/frontend/pages/admin.html`.
-3. Usar **Novo produto** para cadastrar um equipamento, **Editar** para alterar os dados e **Excluir** para removê-lo.
-4. No cadastro, informar um identificador único (ex.: `notebook-teste`) e um caminho de imagem existente (ex.: `../assets/images/Dell XPS 15/img1.png`). As especificações adicionais ficam em **Mais informações**.
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (ES6+)
 
-O painel impede identificadores repetidos e mantém as especificações ao editar. Preço mensal e estoque usam números inteiros a partir de zero.
+### Backend
+- Java
+- Spring Boot
+- REST API
 
-A verificação de administrador é feita no frontend usando a role retornada pelo login. O backend atual não aplica autorização nas rotas de produtos.
+### Banco de Dados
+- PostgreSQL
 
-O banco configurado é H2 em memória: cadastros, alterações e exclusões são perdidos ao reiniciar o backend, que recria os dados iniciais.
+### Infraestrutura
+- Docker
+- Docker Compose
+- Nginx
+
+---
 
 ## Funcionalidades
 
-- Catálogo de produtos dinâmico
-- Busca e filtros de produtos
-- Página de detalhes dinâmica por ID
-- Galeria de imagens por produto
-- Produtos relacionados
-- Carrinho com localStorage
-- Integração com backend Spring Boot
-- Painel administrativo com cadastro, edição e exclusão de produtos
+### Área Pública
+- Página inicial institucional
+- Cadastro de usuários
+- Login e autenticação
+- Catálogo de produtos
+- Busca e filtros por categoria
+- Página de detalhes dos produtos
+- Página Sobre Nós
+
+### Área do Cliente
+- Carrinho de compras
+- Checkout
+- Pagamento via Pix
+- Pagamento via Cartão
+- Registro de pedidos
+
+### Área Administrativa
+- Painel administrativo
+- Cadastro de produtos
+- Edição de produtos
+- Remoção de produtos
+- Gerenciamento do catálogo
+
+---
+
+## Arquitetura do Projeto
+
+O sistema foi desenvolvido seguindo uma arquitetura em camadas:
+
+- Frontend responsável pela interface do usuário
+- Backend construído com Spring Boot utilizando arquitetura REST
+- Banco de dados PostgreSQL para persistência das informações
+- Docker Compose para orquestração dos serviços
+- Nginx como servidor web para disponibilização do frontend
+
+---
+
+## Estrutura da Aplicação
+
+```text
+DevLoop/
+│
+├── frontend/
+│   ├── assets/
+│   ├── css/
+│   ├── js/
+│   └── pages/
+│
+├── backend/
+│   ├── src/
+│   └── pom.xml
+│
+├── database/
+│
+├── docker-compose.yml
+│
+└── README.md
+```
+
+## Como Executar o Projeto
+
+### Pré-requisitos
+
+- Docker
+- Docker Compose
+
+### Executando
+
+```bash
+docker compose up -d
+```
+
+Após a inicialização:
+
+Frontend:
+
+```text
+http://localhost
+```
+
+Backend:
+
+```text
+http://localhost:8080
+```
+
+Swagger/OpenAPI:
+
+```text
+http://localhost:8080/swagger-ui.html
+```
+
+---
+
+## Documentação da API
+
+A API REST foi documentada utilizando OpenAPI (Swagger), permitindo visualizar e testar os endpoints diretamente pela interface web.
+
+Principais recursos:
+
+- Autenticação de usuários
+- Gerenciamento de produtos
+- Gerenciamento de pedidos
+
+---
+
+## Capturas de Tela
+
+### Página Inicial
+
+![Página Inicial](./screenshots/home.png)
+
+### Catálogo de Produtos
+
+![Produtos](./screenshots/produtos.png)
+
+### Carrinho
+
+![Carrinho](./screenshots/carrinho.png)
+
+### Painel Administrativo
+
+![Admin](./screenshots/admin.png)
+
+---
+
+## Equipe
+
+- Bruno de Jesus Oliveira
+- Bruno Nagasawa Cruz
+- Maria Eduarda Pimentel Hazelman de Souza
+- Sabrina Barbosa dos Santos de Matos
+- Mariana Esteves Porto
+
+---
+
+## Projeto Acadêmico
+
+Projeto desenvolvido para a disciplina de Desenvolvimento Backend do curso de Análise e Desenvolvimento de Sistemas da Universidade Veiga de Almeida.
