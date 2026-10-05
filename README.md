@@ -14,20 +14,12 @@ A plataforma permite navegar por um catálogo de notebooks, workstations e compu
 
 ## Tecnologias Utilizadas
 
-### Frontend
 - HTML5
 - CSS3
-- JavaScript (ES6+)
-
-### Backend
+- JavaScript
 - Java
 - Spring Boot
-- REST API
-
-### Banco de Dados
 - PostgreSQL
-
-### Infraestrutura
 - Docker
 - Docker Compose
 - Nginx
